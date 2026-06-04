@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Skyra</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Syne',sans-serif;background:#050a14;color:#fff;height:100vh;overflow:hidden;position:relative;}
+
+/* SCREENS */
+.screen{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.8s ease,transform 0.8s ease;}
+.screen.hidden{opacity:0;pointer-events:none;transform:translateY(30px);}
+
+/* SKY BACKGROUND */
+.sky-bg{position:absolute;inset:0;background:linear-gradient(180deg,#0a1628 0%,#1a3a5c 40%,#2a5a8c 70%,#1a3a5c 100%);transition:background 1.2s ease;z-index:0;}
+.sky-bg.night{background:linear-gradient(180deg,#020408 0%,#05101e 40%,#081830 70%,#05101e 100%);}
+
+/* STARS */
+.stars{position:absolute;inset:0;z-index:1;opacity:0;transition:opacity 1.5s ease;}
+.stars.visible{opacity:1;}
+.star{position:absolute;background:#fff;border-radius:50%;animation:twinkle 3s infinite alternate;}
+@keyframes twinkle{0%{opacity:0.2;}100%{opacity:1;}}
+
+/* CLOUDS */
+.clouds-layer{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden;}
+.cloud-group{animation:driftCloud 18s linear infinite;}
+.cloud-group:nth-child(2){animation-duration:24s;animation-delay:-6s;}
+.cloud-group:nth-child(3){animation-duration:20s;animation-delay:-12s;}
+@keyframes driftCloud{0%{transform:translateX(-120px);}100%{transform:translateX(120px);}}
+
+/* MODE TOGGLE */
+.mode-toggle{position:absolute;top:24px;right:24px;z-index:20;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:50px;padding:6px 14px;cursor:pointer;font-size:12px;letter-spacing:1.5px;color:rgba(255,255,255,0.7);font-family:'Syne',sans-serif;transition:all 0.3s;backdrop-filter:blur(8px);}
+.mode-toggle:hover{background:rgba(255,255,255,0.15);color:#fff;}
+
+/* LOGO */
+.logo{position:absolute;top:24px;left:28px;z-index:20;font-family:'Syne',sans-serif;font-weight:800;font-size:22px;letter-spacing:3px;color:#fff;}
+.logo span{color:rgba(100,180,255,0.8);}
+
+/* PLANE SVG WRAP */
+.plane-svg-wrap{position:absolute;top:8%;left:50%;transform:translateX(-50%);width:85%;max-width:680px;z-index:2;}
+
+/* HERO */
+.hero{position:relative;z-index:10;text-align:left;padding:0 5%;width:100%;margin-top:auto;padding-bottom:90px;}
+.powered{display:inline-flex;align-items:center;gap:6px;background:rgba(100,180,255,0.12);border:1px solid rgba(100,180,255,0.2);border-radius:50px;padding:4px 12px;margin-bottom:18px;font-size:10px;letter-spacing:2px;color:rgba(100,200,255,0.7);}
+.powered::before{content:'';width:6px;height:6px;background:#64b4ff;border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+h1.tagline{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(28px,5vw,52px);line-height:1.15;color:#fff;max-width:550px;letter-spacing:-0.5px;}
+h1.tagline em{font-style:italic;color:rgba(100,200,255,0.9);}
+.stats{display:flex;gap:32px;margin-top:28px;}
+.stat-num{font-size:22px;font-weight:700;color:#fff;}
+.stat-label{font-size:10px;letter-spacing:1.5px;color:rgba(255,255,255,0.45);text-transform:uppercase;margin-top:2px;}
+
+/* NEXT BUTTON */
+.next-btn{position:absolute;bottom:28px;right:28px;z-index:20;display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:10px 20px 10px 16px;cursor:pointer;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;letter-spacing:1.5px;color:#fff;transition:all 0.3s;backdrop-filter:blur(8px);}
+.next-btn:hover{background:rgba(255,255,255,0.18);transform:translateX(4px);}
+
+/* LOGIN PAGE */
+#login{background:linear-gradient(135deg,#060d1a 0%,#0d1f3c 50%,#060d1a 100%);}
+.login-bg-glow{position:absolute;width:600px;height:400px;background:radial-gradient(ellipse,rgba(30,80,160,0.25) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-55%);pointer-events:none;}
+.back-btn{position:absolute;top:24px;left:24px;z-index:20;background:transparent;border:none;cursor:pointer;color:rgba(255,255,255,0.4);font-size:12px;letter-spacing:1.5px;font-family:'Syne',sans-serif;display:flex;align-items:center;gap:6px;transition:color 0.2s;}
+.back-btn:hover{color:rgba(255,255,255,0.8);}
+.login-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:28px;letter-spacing:4px;color:#fff;margin-bottom:8px;}
+.login-logo span{color:rgba(100,180,255,0.8);}
+.login-sub{font-size:11px;letter-spacing:2.5px;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-bottom:48px;}
+.login-cards{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;}
+.role-card{width:200px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:32px 24px 28px;cursor:pointer;transition:all 0.35s;text-align:center;position:relative;overflow:hidden;}
+.role-card:hover{border-color:rgba(100,180,255,0.4);background:rgba(100,180,255,0.08);transform:translateY(-6px);}
+.role-icon{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:28px;background:rgba(100,180,255,0.1);border:1px solid rgba(100,180,255,0.2);}
+.role-title{font-size:16px;font-weight:700;letter-spacing:1px;color:#fff;margin-bottom:8px;}
+.role-desc{font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:0.5px;line-height:1.6;}
+.role-arrow{margin-top:20px;font-size:11px;letter-spacing:2px;color:rgba(100,180,255,0.4);transition:color 0.3s,transform 0.3s;display:inline-block;}
+.role-card:hover .role-arrow{color:rgba(100,180,255,0.9);}
+
+/* HOME PAGES */
+#home-passenger,#home-crew{background:linear-gradient(135deg,#060d1a 0%,#0d1f3c 50%,#060d1a 100%);padding:24px;align-items:flex-start;justify-content:flex-start;overflow-y:auto;}
+.home-header{display:flex;justify-content:space-between;align-items:center;width:100%;margin-bottom:28px;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:18px;}
+.home-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;letter-spacing:3px;color:#fff;}
+.home-logo span{color:rgba(100,180,255,0.8);}
+.user-badge{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:50px;padding:6px 14px 6px 8px;}
+.user-avatar{width:28px;height:28px;border-radius:50%;background:rgba(100,180,255,0.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:rgba(100,180,255,0.9);}
+.user-name{font-size:12px;color:rgba(255,255,255,0.5);letter-spacing:0.5px;}
+.welcome-line{font-size:11px;letter-spacing:2.5px;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-bottom:6px;}
+.home-title{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3.5vw,36px);font-weight:300;color:#fff;margin-bottom:28px;}
+.modules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;width:100%;}
+.module-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:22px 18px;cursor:pointer;transition:all 0.3s;position:relative;overflow:hidden;}
+.module-card:hover{background:rgba(100,180,255,0.07);border-color:rgba(100,180,255,0.25);transform:translateY(-3px);}
+.module-card-icon{font-size:24px;margin-bottom:12px;}
+.module-card-title{font-size:13px;font-weight:700;letter-spacing:1px;color:#fff;margin-bottom:6px;}
+.module-card-desc{font-size:11px;color:rgba(255,255,255,0.35);line-height:1.6;}
+.module-tag{position:absolute;top:12px;right:12px;font-size:9px;letter-spacing:1.5px;padding:3px 8px;border-radius:50px;background:rgba(100,180,255,0.1);color:rgba(100,180,255,0.6);border:1px solid rgba(100,180,255,0.15);}
+.alert-strip{width:100%;background:rgba(255,200,80,0.06);border:1px solid rgba(255,200,80,0.15);border-radius:10px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.alert-dot{width:8px;height:8px;border-radius:50%;background:#ffc850;flex-shrink:0;animation:pulse 2s infinite;}
+.alert-text{font-size:11px;color:rgba(255,200,80,0.7);letter-spacing:0.5px;line-height:1.5;}
+.logout-link{position:absolute;top:24px;right:24px;font-size:11px;letter-spacing:1.5px;color:rgba(255,255,255,0.25);cursor:pointer;transition:color 0.2s;}
+.logout-link:hover{color:rgba(255,255,255,0.6);}
+.crew-accent .module-card:hover{background:rgba(255,160,80,0.07);border-color:rgba(255,160,80,0.25);}
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<!-- LANDING PAGE -->
+<div class="screen" id="landing">
+  <div class="sky-bg" id="skyBg"></div>
+
+  <div class="plane-svg-wrap">
+    <svg viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;filter:drop-shadow(0 30px 60px rgba(0,0,0,0.6))">
+      <ellipse cx="340" cy="200" rx="280" ry="120" fill="rgba(30,80,160,0.15)"/>
+      <ellipse cx="340" cy="185" rx="38" ry="140" fill="#c8d8e8" opacity="0.92"/>
+      <ellipse cx="340" cy="65" rx="22" ry="32" fill="#b0c4d8"/>
+      <ellipse cx="333" cy="80" rx="7" ry="9" fill="#1a3a5c" opacity="0.9"/>
+      <ellipse cx="349" cy="80" rx="7" ry="9" fill="#1a3a5c" opacity="0.9"/>
+      <rect x="310" y="90" width="60" height="200" rx="30" fill="#dde8f0" opacity="0.5"/>
+      <path d="M305 190 L60 280 L120 295 L325 215 Z" fill="#a8bccc" opacity="0.88"/>
+      <path d="M375 190 L620 280 L560 295 L355 215 Z" fill="#a8bccc" opacity="0.88"/>
+      <ellipse cx="155" cy="271" rx="22" ry="9" fill="#8098ae"/>
+      <ellipse cx="240" cy="252" rx="18" ry="7" fill="#8098ae"/>
+      <ellipse cx="525" cy="271" rx="22" ry="9" fill="#8098ae"/>
+      <ellipse cx="440" cy="252" rx="18" ry="7" fill="#8098ae"/>
+      <path d="M325 295 L295 320 L310 325 L340 300 Z" fill="#b0c4d8"/>
+      <path d="M355 295 L385 320 L370 325 L340 300 Z" fill="#b0c4d8"/>
+      <path d="M335 260 L318 180 L340 175 L362 180 L345 260 Z" fill="#b8ccd8"/>
+      <rect x="326" y="110" width="8" height="10" rx="3" fill="#1a3a5c" opacity="0.7"/>
+      <rect x="326" y="128" width="8" height="10" rx="3" fill="#1a3a5c" opacity="0.7"/>
+      <rect x="326" y="146" width="8" height="10" rx="3" fill="#1a3a5c" opacity="0.7"/>
+      <rect x="326" y="164" width="8" height="10" rx="3" fill="#1a3a5c" opacity="0.7"/>
+      <rect x="346" y="110" width="8" height="10" rx="3" fill="#1a3a5c" opacity="0.7"/>
+      <rect x="346" y="128" width="8" height="10" rx="3" fill="#1a3a5c" opacity="0.7"/>
+      <rect x="346" y="146" width="8" height="10" rx="3" fill="#1a3a5c" opacity="0.7"/>
+      <rect x="346" y="164" width="8" height="10" rx="3" fill="#1a3a5c" opacity="0.7"/>
+    </svg>
+  </div>
+
+  <svg class="clouds-layer" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="blur1"><feGaussianBlur stdDeviation="8"/></filter>
+      <filter id="blur2"><feGaussianBlur stdDeviation="12"/></filter>
+    </defs>
+    <g class="cloud-group" id="clouds1">
+      <ellipse cx="80" cy="300" rx="90" ry="30" fill="rgba(255,255,255,0.12)" filter="url(#blur1)"/>
+      <ellipse cx="100" cy="285" rx="55" ry="22" fill="rgba(255,255,255,0.10)" filter="url(#blur1)"/>
+      <ellipse cx="130" cy="292" rx="70" ry="26" fill="rgba(255,255,255,0.08)" filter="url(#blur2)"/>
+    </g>
+    <g class="cloud-group" id="clouds2">
+      <ellipse cx="650" cy="320" rx="110" ry="35" fill="rgba(255,255,255,0.10)" filter="url(#blur1)"/>
+      <ellipse cx="680" cy="300" rx="70" ry="25" fill="rgba(255,255,255,0.09)" filter="url(#blur2)"/>
+      <ellipse cx="620" cy="310" rx="80" ry="28" fill="rgba(255,255,255,0.07)" filter="url(#blur1)"/>
+    </g>
+    <g class="cloud-group" id="clouds3">
+      <ellipse cx="350" cy="340" rx="130" ry="38" fill="rgba(255,255,255,0.07)" filter="url(#blur2)"/>
+      <ellipse cx="390" cy="322" rx="85" ry="28" fill="rgba(255,255,255,0.06)" filter="url(#blur1)"/>
+    </g>
+  </svg>
+
+  <div class="logo">SKY<span>RA</span></div>
+  <button class="mode-toggle" id="modeToggle" onclick="toggleMode()">☀ DAY</button>
+
+  <div class="hero">
+    <div class="powered">✦ POWERED BY AI</div>
+    <h1 class="tagline">The Sky Has Always<br/>Had Secrets.<br/><em>Now It Talks.</em></h1>
+    <div class="stats">
+      <div class="stat-item"><div class="stat-num">0</div><div class="stat-label">Scheduling Conflicts</div></div>
+      <div class="stat-item"><div class="stat-num">8%</div><div class="stat-label">Fatigue Reduction</div></div>
+      <div class="stat-item"><div class="stat-num">15%</div><div class="stat-label">Fewer Delays</div></div>
+    </div>
+  </div>
+
+  <button class="next-btn" onclick="goTo('login')">ENTER <span>→</span></button>
+</div>
+
+<!-- LOGIN PAGE -->
+<div class="screen hidden" id="login">
+  <div class="login-bg-glow"></div>
+  <button class="back-btn" onclick="goTo('landing')">← BACK</button>
+  <div class="login-logo">SKY<span>RA</span></div>
+  <div class="login-sub">Choose how you fly with us</div>
+  <div class="login-cards">
+    <div class="role-card" onclick="goTo('home-passenger')">
+      <div class="role-icon">🧳</div>
+      <div class="role-title">PASSENGER</div>
+      <div class="role-desc">Know your rights.<br/>Track your flight.<br/>Travel with clarity.</div>
+      <div class="role-arrow">CONTINUE →</div>
+    </div>
+    <div class="role-card" onclick="goTo('home-crew')">
+      <div class="role-icon">✈️</div>
+      <div class="role-title">CREW & STAFF</div>
+      <div class="role-desc">Monitor fatigue.<br/>Manage schedules.<br/>Fly with confidence.</div>
+      <div class="role-arrow">CONTINUE →</div>
+    </div>
+  </div>
+</div>
+
+<!-- PASSENGER HOME -->
+<div class="screen hidden" id="home-passenger">
+  <div class="home-header">
+    <div class="home-logo">SKY<span>RA</span></div>
+    <div class="user-badge">
+      <div class="user-avatar">P</div>
+      <div class="user-name">PASSENGER</div>
+    </div>
+  </div>
+  <span class="logout-link" onclick="goTo('login')">SIGN OUT</span>
+  <div style="width:100%">
+    <div class="welcome-line">Welcome aboard</div>
+    <div class="home-title">Your flight,<br/><em style="font-style:italic;color:rgba(100,200,255,0.8);">your rights, your sky.</em></div>
+    <div class="alert-strip">
+      <div class="alert-dot"></div>
+      <div class="alert-text">IndiGo 6E-204 · Delayed 2h 15min · You may be eligible for ₹3,500 compensation</div>
+    </div>
+    <div class="modules-grid">
+      <div class="module-card"><div class="module-tag">AI</div><div class="module-card-icon">⚖️</div><div class="module-card-title">MY RIGHTS</div><div class="module-card-desc">Instant clarity on delays, cancellations & compensation. Ask in Hindi or English.</div></div>
+      <div class="module-card"><div class="module-tag">LIVE</div><div class="module-card-icon">📡</div><div class="module-card-title">TRACK FLIGHT</div><div class="module-card-desc">Share a live link with family. Real-time position, ETA & alerts.</div></div>
+      <div class="module-card"><div class="module-tag">NEW</div><div class="module-card-icon">💬</div><div class="module-card-title">ASK SKYRA</div><div class="module-card-desc">AI assistant for all your aviation questions. Multilingual support.</div></div>
+      <div class="module-card"><div class="module-tag">DOCS</div><div class="module-card-icon">📋</div><div class="module-card-title">CLAIM HELPER</div><div class="module-card-desc">Auto-generate compensation claim letters. One tap, done.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CREW HOME -->
+<div class="screen hidden crew-accent" id="home-crew">
+  <div class="home-header">
+    <div class="home-logo">SKY<span>RA</span></div>
+    <div class="user-badge">
+      <div class="user-avatar" style="background:rgba(255,160,80,0.2);color:rgba(255,160,80,0.9);">C</div>
+      <div class="user-name">CREW & STAFF</div>
+    </div>
+  </div>
+  <span class="logout-link" onclick="goTo('login')">SIGN OUT</span>
+  <div style="width:100%">
+    <div class="welcome-line">Operations overview</div>
+    <div class="home-title">Safer skies start<br/><em style="font-style:italic;color:rgba(255,160,80,0.8);">before the runway.</em></div>
+    <div class="alert-strip" style="background:rgba(255,100,80,0.06);border-color:rgba(255,100,80,0.2);">
+      <div class="alert-dot" style="background:#ff6450;"></div>
+      <div class="alert-text" style="color:rgba(255,140,120,0.8);">Capt. R. Sharma · Fatigue Risk Score: HIGH · Next flight in 4h — review recommended</div>
+    </div>
+    <div class="modules-grid">
+      <div class="module-card"><div class="module-tag" style="background:rgba(255,160,80,0.1);color:rgba(255,160,80,0.6);border-color:rgba(255,160,80,0.15);">AI</div><div class="module-card-icon">🧠</div><div class="module-card-title">FATIGUE MONITOR</div><div class="module-card-desc">AI fatigue risk scores from duty logs, rest hours & time zones crossed.</div></div>
+      <div class="module-card"><div class="module-tag" style="background:rgba(255,160,80,0.1);color:rgba(255,160,80,0.6);border-color:rgba(255,160,80,0.15);">LIVE</div><div class="module-card-icon">🎙️</div><div class="module-card-title">VOICE ANALYSIS</div><div class="module-card-desc">ATC recording analysis — hesitation, response time & repeat requests flagged.</div></div>
+      <div class="module-card"><div class="module-tag" style="background:rgba(255,160,80,0.1);color:rgba(255,160,80,0.6);border-color:rgba(255,160,80,0.15);">DASH</div><div class="module-card-icon">📊</div><div class="module-card-title">CREW DASHBOARD</div><div class="module-card-desc">Full crew schedule, rest compliance & pre-flight readiness overview.</div></div>
+      <div class="module-card"><div class="module-tag" style="background:rgba(255,160,80,0.1);color:rgba(255,160,80,0.6);border-color:rgba(255,160,80,0.15);">ALERTS</div><div class="module-card-icon">🚨</div><div class="module-card-title">RED FLAG ALERTS</div><div class="module-card-desc">Automated flags sent to airline ops when risk thresholds are breached.</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const starsEl = document.getElementById('stars');
+for(let i = 0; i < 120; i++){
+  const s = document.createElement('div');
+  s.className = 'star';
+  s.style.cssText = `width:${Math.random()*2+1}px;height:${Math.random()*2+1}px;top:${Math.random()*100}%;left:${Math.random()*100}%;animation-delay:${Math.random()*4}s;animation-duration:${Math.random()*3+2}s;`;
+  starsEl.appendChild(s);
+}
+
+let isNight = false;
+function toggleMode(){
+  isNight = !isNight;
+  document.getElementById('skyBg').classList.toggle('night', isNight);
+  document.getElementById('stars').classList.toggle('visible', isNight);
+  document.getElementById('modeToggle').textContent = isNight ? '☽ NIGHT' : '☀ DAY';
+  document.querySelectorAll('.cloud-group ellipse').forEach(c => {
+    if(isNight){
+      c.setAttribute('fill', c.getAttribute('fill').replace('255,255,255','30,50,80'));
+    } else {
+      c.setAttribute('fill', c.getAttribute('fill').replace('30,50,80','255,255,255'));
+    }
+  });
+}
+
+function goTo(id){
+  document.querySelectorAll('.screen').forEach(s => s.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+}
+</script>
+</body>
+</html>
