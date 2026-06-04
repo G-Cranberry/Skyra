@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKYRA - Passenger Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="skyra.css">
+    <style>
+        .header {
+            padding: 32px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(100,180,255,0.1);
+            border: 1px solid rgba(100,180,255,0.2);
+            padding: 8px 16px 8px 8px;
+            border-radius: 40px;
+        }
+        .avatar {
+            width: 32px;
+            height: 32px;
+            background: var(--blue-bright);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-deep);
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .hero-section {
+            padding: 60px 0;
+        }
+
+        .alert-strip {
+            background: rgba(245, 158, 11, 0.15);
+            border-left: 4px solid #f59e0b;
+            padding: 16px 24px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 48px;
+            color: #fcd34d;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .module-card {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(100,180,255,0.3);
+        }
+
+        .module-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            background: rgba(100,180,255,0.1);
+            color: var(--blue-bright);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tag {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.1);
+        }
+        .tag.blue { background: rgba(100,180,255,0.2); color: var(--blue-bright); }
+        .tag.green { background: rgba(16,185,129,0.2); color: #34d399; }
+        .tag.purple { background: rgba(168,85,247,0.2); color: #c084fc; }
+
+        .module-title {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .module-desc {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">SKY<span class="ra">RA</span></div>
+        <div class="user-badge">
+            <div class="avatar">JD</div>
+            <span style="font-size: 14px; font-weight: 600;">Passenger</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="hero-section">
+            <p style="color: var(--blue-bright); font-weight: 600; letter-spacing: 2px; margin-bottom: 16px;">WELCOME BACK, JOHN</p>
+            <h1 class="serif" style="font-size: 56px; font-weight: 500; font-style: italic;">Your flight, your rights, your sky.</h1>
+        </div>
+
+        <div class="alert-strip">
+            <i data-lucide="alert-triangle" style="width: 24px; height: 24px;"></i>
+            <div>
+                <strong style="display: block; font-size: 16px; margin-bottom: 4px;">Flight AI-101 Delayed (2h 15m)</strong>
+                <span style="font-size: 14px; opacity: 0.9;">You may be eligible for meal vouchers and compensation. <a href="#" style="color: white; text-decoration: underline;">Check eligibility</a></span>
+            </div>
+        </div>
+
+        <div class="modules-grid">
+            <!-- Module 1 -->
+            <a href="#" class="glass-card module-card">
+                <div class="module-header">
+                    <div class="icon-box"><i data-lucide="scale"></i></div>
+                    <span class="tag blue">AI</span>
+                </div>
+                <div>
+                    <h3 class="module-title">My Rights</h3>
+                    <p class="module-desc mt-2">Chat with our AI to understand exactly what you are owed during disruptions.</p>
+                </div>
+            </a>
+
+            <!-- Module 2 -->
+            <a href="#" class="glass-card module-card">
+                <div class="module-header">
+                    <div class="icon-box"><i data-lucide="map"></i></div>
+                    <span class="tag green">LIVE</span>
+                </div>
+                <div>
+                    <h3 class="module-title">Track Flight</h3>
+                    <p class="module-desc mt-2">Real-time telemetry and family sharing links for your journey.</p>
+                </div>
+            </a>
+
+            <!-- Module 3 -->
+            <a href="#" class="glass-card module-card">
+                <div class="module-header">
+                    <div class="icon-box"><i data-lucide="sparkles"></i></div>
+                    <span class="tag purple">NEW</span>
+                </div>
+                <div>
+                    <h3 class="module-title">Ask Skyra</h3>
+                    <p class="module-desc mt-2">Your personal aviation assistant. Ask anything about airports, baggage, or boarding.</p>
+                </div>
+            </a>
+
+            <!-- Module 4 -->
+            <a href="#" class="glass-card module-card">
+                <div class="module-header">
+                    <div class="icon-box"><i data-lucide="file-text"></i></div>
+                    <span class="tag">DOCS</span>
+                </div>
+                <div>
+                    <h3 class="module-title">Claim Helper</h3>
+                    <p class="module-desc mt-2">Auto-generate official compensation claim emails and forms.</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

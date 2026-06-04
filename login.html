@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKYRA - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="skyra.css">
+    <style>
+        body {
+            background: #02050a;
+            position: relative;
+        }
+        
+        /* Blue Radial Glow */
+        .glow-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(100,180,255,0.15) 0%, transparent 60%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            z-index: 100;
+        }
+        .back-btn:hover { color: white; }
+
+        .login-container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 0 40px;
+        }
+
+        .subtitle {
+            margin-top: 24px;
+            font-size: 20px;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+        }
+
+        .cards-wrapper {
+            display: flex;
+            gap: 40px;
+            margin-top: 60px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .role-card {
+            flex: 1;
+            padding: 48px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
+        }
+
+        .role-card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Passenger Glow */
+        .card-pass:hover {
+            box-shadow: 0 20px 40px -10px rgba(100,180,255,0.2);
+            border-color: rgba(100,180,255,0.4);
+        }
+        .card-pass:hover .icon-wrap { color: var(--blue-bright); background: rgba(100,180,255,0.1); }
+        
+        /* Crew Glow */
+        .card-crew:hover {
+            box-shadow: 0 20px 40px -10px rgba(255,140,50,0.2);
+            border-color: rgba(255,140,50,0.4);
+        }
+        .card-crew:hover .icon-wrap { color: var(--orange-bright); background: rgba(255,140,50,0.1); }
+
+        .icon-wrap {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 32px;
+            transition: all 0.3s;
+        }
+
+        .role-card h2 {
+            font-size: 24px;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+        }
+
+        .role-desc {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 15px;
+            margin-bottom: 40px;
+            flex: 1;
+        }
+
+        .continue-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .card-pass .continue-btn { color: var(--blue-bright); }
+        .card-crew .continue-btn { color: var(--orange-bright); }
+
+        .continue-btn i { transition: transform 0.3s; }
+        .role-card:hover .continue-btn i { transform: translateX(8px); }
+
+    </style>
+</head>
+<body>
+
+    <div class="glow-bg"></div>
+
+    <a href="index.html" class="back-btn">
+        <i data-lucide="arrow-left" style="width: 18px;"></i> Back to Earth
+    </a>
+
+    <div class="login-container">
+        <div class="logo" style="font-size: 32px;">SKY<span class="ra">RA</span></div>
+        <p class="subtitle">Choose how you fly with us</p>
+
+        <div class="cards-wrapper">
+            <!-- Passenger Card -->
+            <a href="passenger-home.html" class="glass-card role-card card-pass">
+                <div class="icon-wrap">
+                    <i data-lucide="luggage" style="width: 32px; height: 32px;"></i>
+                </div>
+                <h2>PASSENGER</h2>
+                <div class="role-desc">
+                    Access AI-powered claim assistance.<br>
+                    Track family flights in real-time.<br>
+                    Know your rights before you board.
+                </div>
+                <div class="continue-btn">
+                    CONTINUE <i data-lucide="arrow-right" style="width: 16px;"></i>
+                </div>
+            </a>
+
+            <!-- Crew Card -->
+            <a href="crew-home.html" class="glass-card role-card card-crew">
+                <div class="icon-wrap">
+                    <i data-lucide="plane" style="width: 32px; height: 32px;"></i>
+                </div>
+                <h2>CREW & STAFF</h2>
+                <div class="role-desc">
+                    Monitor fatigue levels instantly.<br>
+                    Analyze ATC voice stress.<br>
+                    Manage duty logs safely.
+                </div>
+                <div class="continue-btn">
+                    CONTINUE <i data-lucide="arrow-right" style="width: 16px;"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
