@@ -1,198 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SKYRA - Crew Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="skyra.css">
-    <style>
-        .header {
-            padding: 32px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .user-badge {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: rgba(255, 140, 50, 0.1);
-            border: 1px solid rgba(255, 140, 50, 0.2);
-            padding: 8px 16px 8px 8px;
-            border-radius: 40px;
-        }
-        .avatar {
-            width: 32px;
-            height: 32px;
-            background: var(--orange-bright);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--bg-deep);
-            font-weight: 800;
-            font-size: 14px;
-        }
-
-        .hero-section {
-            padding: 60px 0;
-        }
-
-        .alert-strip {
-            background: rgba(239, 68, 68, 0.15);
-            border-left: 4px solid #ef4444;
-            padding: 16px 24px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 48px;
-            color: #fca5a5;
-        }
-
-        .modules-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-
-        .module-card {
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-            text-decoration: none;
-            color: white;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .module-card:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(255, 140, 50, 0.3);
-        }
-
-        .module-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .icon-box {
-            width: 48px;
-            height: 48px;
-            background: rgba(255, 140, 50, 0.1);
-            color: var(--orange-bright);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .tag {
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            padding: 4px 12px;
-            border-radius: 20px;
-            background: rgba(255,255,255,0.1);
-        }
-        .tag.blue { background: rgba(100,180,255,0.2); color: var(--blue-bright); }
-        .tag.green { background: rgba(16,185,129,0.2); color: #34d399; }
-        .tag.red { background: rgba(239,68,68,0.2); color: #f87171; }
-
-        .module-title {
-            font-size: 24px;
-            font-weight: 600;
-        }
-
-        .module-desc {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-    </style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SKYRA - Crew Home</title>
+  <link rel="stylesheet" href="shared.css"/>
+  <link rel="stylesheet" href="crew-home.css"/>
 </head>
 <body>
 
-    <header class="header">
-        <div class="logo">SKY<span class="ra">RA</span></div>
-        <div class="user-badge">
-            <div class="avatar">CP</div>
-            <span style="font-size: 14px; font-weight: 600;">Captain</span>
-        </div>
-    </header>
+  <nav class="navbar">
+    <div class="nav-logo" onclick="window.location.href='index.html'">SKY<span>RA</span></div>
+    <div class="nav-links">
+      <div class="nav-link active" onclick="window.location.href='fatigue.html'">Fatigue Monitor</div>
+      <div class="nav-link" onclick="window.location.href='voice.html'">Voice Analysis</div>
+      <div class="nav-link" onclick="window.location.href='crew-dashboard.html'">Crew Dashboard</div>
+      <div class="nav-link" onclick="window.location.href='about.html'">About Us</div>
+    </div>
+    <div class="nav-profile crew-nav-profile" id="crewAvatar" onclick="window.location.href='profile.html'" title="Profile">CP</div>
+  </nav>
 
-    <div class="container">
-        <div class="hero-section">
-            <p style="color: var(--orange-bright); font-weight: 600; letter-spacing: 2px; margin-bottom: 16px;">DUTY STATION</p>
-            <h1 class="serif" style="font-size: 56px; font-weight: 500; font-style: italic;">Safer skies start before the runway.</h1>
-        </div>
+  <div class="home-content">
+    <div class="home-greeting">Duty Station &middot; Capt. Ravi Sharma</div>
+    <div class="home-title crew-title">Safer skies start<br/><em>before the runway.</em></div>
 
-        <div class="alert-strip">
-            <i data-lucide="shield-alert" style="width: 24px; height: 24px;"></i>
-            <div>
-                <strong style="display: block; font-size: 16px; margin-bottom: 4px;">High Fatigue Risk Detected</strong>
-                <span style="font-size: 14px; opacity: 0.9;">Schedule analysis shows rest deficit prior to next duty block. <a href="#" style="color: white; text-decoration: underline;">Review limits</a></span>
-            </div>
-        </div>
-
-        <div class="modules-grid">
-            <!-- Module 1 -->
-            <a href="#" class="glass-card module-card">
-                <div class="module-header">
-                    <div class="icon-box"><i data-lucide="activity"></i></div>
-                    <span class="tag blue">AI</span>
-                </div>
-                <div>
-                    <h3 class="module-title">Fatigue Monitor</h3>
-                    <p class="module-desc mt-2">Calculate your FRMS score instantly and prevent regulatory violations.</p>
-                </div>
-            </a>
-
-            <!-- Module 2 -->
-            <a href="#" class="glass-card module-card">
-                <div class="module-header">
-                    <div class="icon-box"><i data-lucide="mic"></i></div>
-                    <span class="tag green">LIVE</span>
-                </div>
-                <div>
-                    <h3 class="module-title">Voice Analysis</h3>
-                    <p class="module-desc mt-2">ATC voice pattern analysis for latency and stress markers.</p>
-                </div>
-            </a>
-
-            <!-- Module 3 -->
-            <a href="#" class="glass-card module-card">
-                <div class="module-header">
-                    <div class="icon-box"><i data-lucide="clipboard-list"></i></div>
-                    <span class="tag">DOCS</span>
-                </div>
-                <div>
-                    <h3 class="module-title">Crew Dashboard</h3>
-                    <p class="module-desc mt-2">Parse and visualize your duty schedule against rest requirements.</p>
-                </div>
-            </a>
-
-            <!-- Module 4 -->
-            <a href="#" class="glass-card module-card">
-                <div class="module-header">
-                    <div class="icon-box"><i data-lucide="flag"></i></div>
-                    <span class="tag red">ALERTS</span>
-                </div>
-                <div>
-                    <h3 class="module-title">Red Flag Alerts</h3>
-                    <p class="module-desc mt-2">Critical safety and scheduling warnings needing immediate attention.</p>
-                </div>
-            </a>
-        </div>
+    <div class="alert-strip crew-alert">
+      <div class="alert-dot crew-dot"></div>
+      <div class="alert-text crew-alert-text">
+        <strong>High Fatigue Risk Detected</strong> — Schedule analysis shows rest deficit prior to next duty block.
+        <span class="alert-link crew-alert-link" onclick="window.location.href='fatigue.html'">Review limits &#8594;</span>
+      </div>
     </div>
 
-    <script>
-        lucide.createIcons();
-    </script>
+    <!-- 3 Crew Flip Cards -->
+    <div class="cards-row">
+      <div class="flip-card crew-card" onclick="window.location.href='fatigue.html'">
+        <div class="flip-card-inner">
+          <div class="flip-front">
+            <div>
+              <div class="flip-tag">AI POWERED</div>
+              <div class="flip-icon">&#129504;</div>
+              <div class="flip-title">Fatigue Monitor</div>
+              <div class="flip-desc">FRMS-based AI calculates your fatigue risk score from duty logs and rest hours.</div>
+            </div>
+            <div class="flip-front-footer"><div class="flip-cta">CHECK SCORE &#8594;</div></div>
+          </div>
+          <div class="flip-back">
+            <div class="flip-back-tag">AI POWERED</div>
+            <div>
+              <div class="flip-back-title">Fatigue Monitor</div>
+              <div class="flip-back-body">Industry-standard FRMS model. Analyzes rest time, time zones, consecutive hours — flags high-risk duty blocks before they become dangerous.</div>
+              <button class="flip-back-btn" onclick="event.stopPropagation();window.location.href='fatigue.html'">Open Fatigue Report &#8594;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card crew-card" onclick="window.location.href='voice.html'">
+        <div class="flip-card-inner">
+          <div class="flip-front">
+            <div>
+              <div class="flip-tag">LIVE</div>
+              <div class="flip-icon">&#127897;&#65039;</div>
+              <div class="flip-title">Voice Analysis</div>
+              <div class="flip-desc">ATC voice pattern analysis — detects hesitation, latency, and stress markers in real-time.</div>
+            </div>
+            <div class="flip-front-footer"><div class="flip-cta">ANALYSE &#8594;</div></div>
+          </div>
+          <div class="flip-back">
+            <div class="flip-back-tag">LIVE</div>
+            <div>
+              <div class="flip-back-title">Voice Analysis</div>
+              <div class="flip-back-body">Powered by OpenAI Whisper + librosa. Analyses ATC recordings from LiveATC.net for cognitive load, response delays, and repeat communication requests.</div>
+              <button class="flip-back-btn" onclick="event.stopPropagation();window.location.href='voice.html'">Open Voice Lab &#8594;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card crew-card" onclick="window.location.href='crew-dashboard.html'">
+        <div class="flip-card-inner">
+          <div class="flip-front">
+            <div>
+              <div class="flip-tag">DASHBOARD</div>
+              <div class="flip-icon">&#128202;</div>
+              <div class="flip-title">Crew Dashboard</div>
+              <div class="flip-desc">Full schedule visualization, rest compliance tracking, and pre-flight readiness summary.</div>
+            </div>
+            <div class="flip-front-footer"><div class="flip-cta">VIEW DASH &#8594;</div></div>
+          </div>
+          <div class="flip-back">
+            <div class="flip-back-tag">DASHBOARD</div>
+            <div>
+              <div class="flip-back-title">Crew Dashboard</div>
+              <div class="flip-back-body">Parse your full duty schedule against DGCA/FAA rest requirements. Get a pre-flight readiness score and instant red flag alerts sent to airline ops.</div>
+              <button class="flip-back-btn" onclick="event.stopPropagation();window.location.href='crew-dashboard.html'">Open Dashboard &#8594;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom grid -->
+    <div class="bottom-grid">
+      <div class="info-card">
+        <div class="info-card-title">Upcoming Duties</div>
+        <div class="info-card-sub">Next 48 hours</div>
+        <div class="info-item"><div class="info-item-img">&#9992;&#65039;</div><div class="info-item-text"><strong>AI-202 &middot; DEL &#8594; BOM &middot; Jun 6</strong><span>06:30 &middot; Risk: HIGH</span></div><span class="history-badge badge-red">HIGH</span></div>
+        <div class="info-item"><div class="info-item-img">&#128747;</div><div class="info-item-text"><strong>6E-890 &middot; BOM &#8594; HYD &middot; Jun 7</strong><span>14:00 &middot; Risk: MED</span></div><span class="history-badge badge-yellow">MED</span></div>
+        <div class="info-item"><div class="info-item-img">&#127759;</div><div class="info-item-text"><strong>EK-521 &middot; DEL &#8594; DXB &middot; Jun 8</strong><span>22:00 &middot; Risk: LOW</span></div><span class="history-badge badge-green">LOW</span></div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">Safety Metrics</div>
+        <div class="info-card-sub">This month</div>
+        <div class="info-item"><div class="info-item-img">&#128564;</div><div class="info-item-text"><strong>Avg Rest Between Duties</strong><span>9.2 hours (Min required: 10h)</span></div></div>
+        <div class="info-item"><div class="info-item-img">&#128336;</div><div class="info-item-text"><strong>Total Flight Hours (June)</strong><span>48h / 100h monthly limit</span></div></div>
+        <div class="info-item"><div class="info-item-img">&#9888;&#65039;</div><div class="info-item-text"><strong>Fatigue Flags This Month</strong><span>3 flags — 1 unresolved</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="crew-home.js"></script>
 </body>
 </html>
