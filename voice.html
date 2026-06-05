@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SKYRA - Voice Analysis</title>
+  <link rel="stylesheet" href="shared.css"/>
+  <link rel="stylesheet" href="voice.css"/>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-logo" onclick="window.location.href='index.html'">SKY<span>RA</span></div>
+    <div class="nav-links">
+      <div class="nav-link" onclick="window.location.href='fatigue.html'">Fatigue Monitor</div>
+      <div class="nav-link active">Voice Analysis</div>
+      <div class="nav-link" onclick="window.location.href='crew-dashboard.html'">Crew Dashboard</div>
+      <div class="nav-link" onclick="window.location.href='about.html'">About Us</div>
+    </div>
+    <div class="nav-profile crew-nav-profile" onclick="window.location.href='profile.html'">CP</div>
+  </nav>
+  <div class="inner-page-content">
+    <div class="inner-page-title">Voice Analysis</div>
+    <div class="inner-page-sub">ATC recording analysis using OpenAI Whisper + librosa — flags hesitation, stress, and cognitive overload markers.</div>
+    <div class="inner-card">
+      <div class="voice-section-title">Upload ATC Recording</div>
+      <div class="voice-drop-zone" id="dropZone">
+        <div class="voice-drop-icon">&#127897;&#65039;</div>
+        <div class="voice-drop-text">Drop audio file here or click to upload</div>
+        <div class="voice-drop-sub">.mp3 / .wav / .m4a &middot; Max 50MB</div>
+        <input type="file" id="audioUpload" accept=".mp3,.wav,.m4a" style="display:none"/>
+      </div>
+      <div class="voice-upload-status" id="uploadStatus"></div>
+    </div>
+    <div class="inner-card">
+      <div class="voice-section-title">Sample Analysis &middot; Flight AI-202</div>
+      <div class="voice-meta">ATC recording &middot; Jun 5, 2026 &middot; 03:42 UTC</div>
+      <div class="info-item"><div class="info-item-img">&#9203;</div><div class="info-item-text"><strong>Average Response Time</strong><span>4.2 sec (Normal: &lt;2.5 sec) — &#9888;&#65039; Elevated</span></div></div>
+      <div class="info-item"><div class="info-item-img">&#128257;</div><div class="info-item-text"><strong>Repeat Requests</strong><span>3 instances — controller asked pilot to repeat</span></div></div>
+      <div class="info-item"><div class="info-item-img">&#128172;</div><div class="info-item-text"><strong>Hesitation Markers</strong><span>7 filler words detected ("uh", "um", long pauses)</span></div></div>
+      <div class="info-item"><div class="info-item-img">&#129504;</div><div class="info-item-text"><strong>Cognitive Load Score</strong><span>72/100 — HIGH &middot; Recommend immediate review</span></div></div>
+    </div>
+  </div>
+  <script src="voice.js"></script>
+</body>
+</html>
