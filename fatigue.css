@@ -1,0 +1,19 @@
+body { background: #f0f4f8; }
+.crew-nav-profile { background: #1a0f2e !important; }
+.inner-card-title { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: #1a1a2e; margin-bottom: 16px; }
+.gauge-wrap { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+.gauge-circle {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  border: 8px solid #e8ecf0;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.gauge-circle.high  { border-color: #ff5252; }
+.gauge-circle.medium { border-color: #ffab40; }
+.gauge-circle.low   { border-color: #66bb6a; }
+.gauge-num { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 700; color: #1a1a2e; }
+.gauge-label { font-size: 9px; letter-spacing: 1.5px; color: #aaa; text-transform: uppercase; }
+.gauge-info strong { display: block; font-size: 15px; font-weight: 600; color: #1a1a2e; margin-bottom: 8px; }
+.gauge-info p { font-size: 12px; color: #888; line-height: 1.6; }
