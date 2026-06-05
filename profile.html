@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SKYRA - Profile</title>
+  <link rel="stylesheet" href="shared.css"/>
+  <link rel="stylesheet" href="profile.css"/>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-logo" onclick="window.location.href='index.html'">SKY<span>RA</span></div>
+    <div class="nav-links">
+      <div class="nav-link" id="backLink" onclick="history.back()">&#8592; Back</div>
+    </div>
+    <div class="nav-profile" id="profileNavAvatar">JD</div>
+  </nav>
+
+  <div class="profile-content">
+    <!-- Avatar hero -->
+    <div class="profile-hero">
+      <div class="profile-avatar-wrap" onclick="document.getElementById('avatarUpload').click()" title="Change photo">
+        <div class="profile-avatar" id="profileAvatarDisplay">JD</div>
+        <div class="avatar-edit-badge">&#9998;&#65039;</div>
+      </div>
+      <input type="file" id="avatarUpload" accept="image/*"/>
+      <div class="profile-info">
+        <div class="profile-name" id="profileDisplayName">John Doe</div>
+        <div class="profile-role" id="profileDisplayRole">PASSENGER</div>
+        <div class="profile-email" id="profileDisplayEmail">john.doe@email.com</div>
+      </div>
+    </div>
+
+    <!-- Edit form -->
+    <div class="profile-section">
+      <div class="profile-section-title">Edit Details</div>
+      <div class="form-row">
+        <div class="form-group"><label>First Name</label><input type="text" id="inputFirst" value="John"/></div>
+        <div class="form-group"><label>Last Name</label><input type="text" id="inputLast" value="Doe"/></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Email</label><input type="email" id="inputEmail" value="john.doe@email.com"/></div>
+        <div class="form-group"><label>Phone</label><input type="tel" id="inputPhone" value="+91 98765 43210"/></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Frequent Flyer ID</label><input type="text" id="inputFfid" value="AI-FF-2039482"/></div>
+        <div class="form-group"><label>Preferred Language</label><input type="text" id="inputLang" value="English / Hindi"/></div>
+      </div>
+      <button class="save-btn" id="saveBtn">SAVE CHANGES</button>
+    </div>
+
+    <!-- Flight history -->
+    <div class="profile-section">
+      <div class="profile-section-title">Flight History</div>
+      <div class="history-item"><div class="history-icon">&#9992;&#65039;</div><div class="history-text"><strong>DEL &#8594; BOM &middot; 6E-204</strong><span>May 28, 2026</span></div><span class="history-badge badge-yellow">DELAYED</span></div>
+      <div class="history-item"><div class="history-icon">&#128747;</div><div class="history-text"><strong>BOM &#8594; GOI &middot; AI-101</strong><span>May 20, 2026</span></div><span class="history-badge badge-green">ON TIME</span></div>
+      <div class="history-item"><div class="history-icon">&#127759;</div><div class="history-text"><strong>DEL &#8594; DXB &middot; EK-510</strong><span>May 10, 2026</span></div><span class="history-badge badge-green">ON TIME</span></div>
+      <div class="history-item"><div class="history-icon">&#9992;&#65039;</div><div class="history-text"><strong>CCU &#8594; DEL &middot; AI-765</strong><span>Apr 30, 2026</span></div><span class="history-badge badge-red">CANCELLED</span></div>
+    </div>
+  </div>
+
+  <script src="profile.js"></script>
+</body>
+</html>
