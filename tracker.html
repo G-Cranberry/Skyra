@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SKYRA - Flight Tracker</title>
+  <link rel="stylesheet" href="shared.css"/>
+  <link rel="stylesheet" href="tracker.css"/>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-logo" onclick="window.location.href='index.html'">SKY<span>RA</span></div>
+    <div class="nav-links">
+      <div class="nav-link" onclick="window.location.href='rights.html'">Rights</div>
+      <div class="nav-link" onclick="window.location.href='family-tracker.html'">Family Tracker</div>
+      <div class="nav-link active">Tracker</div>
+      <div class="nav-link" onclick="window.location.href='about.html'">About Us</div>
+    </div>
+    <div class="nav-profile" onclick="window.location.href='profile.html'">JD</div>
+  </nav>
+  <div class="inner-page-content">
+    <div class="inner-page-title">Flight Tracker</div>
+    <div class="inner-page-sub">Real-time telemetry for any flight worldwide. Powered by OpenSky &amp; FlightAware.</div>
+    <div class="inner-card">
+      <div class="tracker-input-row">
+        <input class="chat-input" type="text" placeholder="Search flight (e.g. AI-101)" id="trackInput"/>
+        <button class="flip-back-btn tracker-btn" id="trackBtn">Track &#8594;</button>
+      </div>
+      <div class="map-placeholder" id="trackerMap">
+        <span>&#128752;</span>
+        <p>LIVE RADAR</p>
+        <div class="map-sub">Enter flight number above to begin tracking</div>
+      </div>
+      <div class="tracker-stats" id="flightStats">
+        <div class="stat-box"><div class="stat-val">35,000</div><div class="stat-label">ALTITUDE (FT)</div></div>
+        <div class="stat-box"><div class="stat-val">840</div><div class="stat-label">SPEED (KM/H)</div></div>
+        <div class="stat-box"><div class="stat-val" style="color:#4a90d9;">ON TIME</div><div class="stat-label">STATUS</div></div>
+        <div class="stat-box"><div class="stat-val">14:35</div><div class="stat-label">ETA</div></div>
+      </div>
+    </div>
+  </div>
+  <script src="tracker.js"></script>
+</body>
+</html>
