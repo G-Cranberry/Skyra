@@ -5,7 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SKYRA - About Us</title>
   <link rel="stylesheet" href="shared.css"/>
-  <link rel="stylesheet" href="about.css"/>
+  <style>
+    body { background: #f0f4f8; }
+.about-story { margin-bottom: 20px; }
+.about-story p { font-size: 14px; color: #555; line-height: 1.8; margin-bottom: 12px; }
+.about-story p:last-child { margin-bottom: 0; }
+.about-stats { margin-bottom: 20px; }
+.about-stack-title { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: #1a1a2e; margin-bottom: 16px; }
+  </style>
 </head>
 <body>
   <nav class="navbar">
@@ -39,6 +46,22 @@
       <div class="info-item"><div class="info-item-img">&#129302;</div><div class="info-item-text"><strong>OpenAI Whisper + librosa</strong><span>ATC voice pattern analysis</span></div></div>
     </div>
   </div>
-  <script src="about.js"></script>
+  <script > 
+  // Detect which user type to set correct nav links
+const isCrewReferrer = document.referrer.includes('crew');
+const link1 = document.getElementById('navLink1');
+const link2 = document.getElementById('navLink2');
+const link3 = document.getElementById('navLink3');
+
+if (isCrewReferrer) {
+  if (link1) { link1.textContent = 'Fatigue Monitor'; link1.onclick = function(){ window.location.href='fatigue.html'; }; }
+  if (link2) { link2.textContent = 'Voice Analysis';  link2.onclick = function(){ window.location.href='voice.html'; }; }
+  if (link3) { link3.textContent = 'Crew Dashboard';  link3.onclick = function(){ window.location.href='crew-dashboard.html'; }; }
+} else {
+  if (link1) { link1.textContent = 'Rights';         link1.onclick = function(){ window.location.href='rights.html'; }; }
+  if (link2) { link2.textContent = 'Family Tracker'; link2.onclick = function(){ window.location.href='family-tracker.html'; }; }
+  if (link3) { link3.textContent = 'Tracker';        link3.onclick = function(){ window.location.href='tracker.html'; }; }
+}
+  </script>
 </body>
 </html>
