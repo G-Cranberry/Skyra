@@ -1,0 +1,84 @@
+body {
+  background: linear-gradient(135deg, #060d1a 0%, #0d1f3c 50%, #060d1a 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.login-glow {
+  position: absolute;
+  width: 500px; height: 350px;
+  background: radial-gradient(ellipse, rgba(30,80,160,0.2) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -55%);
+  pointer-events: none;
+}
+.login-back {
+  position: absolute;
+  top: 24px; left: 24px;
+  color: rgba(255,255,255,0.4);
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  font-family: 'Syne', sans-serif;
+  transition: color 0.2s;
+  z-index: 10;
+  text-decoration: none;
+}
+.login-back:hover { color: #fff; }
+.login-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  padding: 40px 20px;
+}
+.login-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 32px;
+  letter-spacing: 5px;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.login-logo span { color: rgba(100,180,255,0.8); }
+.login-sub {
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+  margin-bottom: 48px;
+}
+.login-cards { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+.role-card {
+  width: 210px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 36px 24px 30px;
+  cursor: pointer;
+  transition: all 0.4s;
+  text-align: center;
+  color: #fff;
+}
+.role-card:hover {
+  border-color: rgba(100,180,255,0.5);
+  background: rgba(100,180,255,0.08);
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px rgba(0,0,20,0.5);
+}
+.role-icon {
+  width: 68px; height: 68px;
+  background: rgba(100,180,255,0.1);
+  border: 1px solid rgba(100,180,255,0.2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 30px;
+  margin: 0 auto 20px;
+}
+.role-title { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 1.5px; margin-bottom: 10px; }
+.role-desc { font-size: 11px; color: rgba(255,255,255,0.35); line-height: 1.7; }
+.role-cta { margin-top: 22px; font-size: 10px; letter-spacing: 2.5px; color: rgba(100,180,255,0.5); transition: color 0.3s; }
+.role-card:hover .role-cta { color: rgba(100,180,255,1); }
