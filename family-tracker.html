@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SKYRA - Family Tracker</title>
+  <link rel="stylesheet" href="shared.css"/>
+  <link rel="stylesheet" href="family-tracker.css"/>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-logo" onclick="window.location.href='index.html'">SKY<span>RA</span></div>
+    <div class="nav-links">
+      <div class="nav-link" onclick="window.location.href='rights.html'">Rights</div>
+      <div class="nav-link active">Family Tracker</div>
+      <div class="nav-link" onclick="window.location.href='tracker.html'">Tracker</div>
+      <div class="nav-link" onclick="window.location.href='about.html'">About Us</div>
+    </div>
+    <div class="nav-profile" onclick="window.location.href='profile.html'">JD</div>
+  </nav>
+  <div class="inner-page-content">
+    <div class="inner-page-title">Family Tracker</div>
+    <div class="inner-page-sub">Share your live flight status with family. One link, no app needed. Auto-alerts on takeoff, delays, and landing.</div>
+    <div class="inner-card">
+      <div class="ft-input-row">
+        <input class="chat-input" type="text" placeholder="Enter flight number (e.g. 6E-204)" id="flightNumInput"/>
+        <button class="flip-back-btn ft-btn" id="generateBtn">Generate Share Link &#8594;</button>
+      </div>
+      <div class="ft-link-area" id="shareLinkArea">
+        <div class="ft-link-label">SHAREABLE LINK GENERATED</div>
+        <div class="ft-link-text" id="shareLinkText">https://skyra.app/track/6E-204?token=sk_live_abc123</div>
+        <div class="ft-link-note">Auto-alerts: Takeoff ✓ &nbsp; Landing ✓ &nbsp; Delays ✓</div>
+      </div>
+      <div class="map-placeholder">
+        <span>&#128506;&#65039;</span>
+        <p>LIVE FLIGHT MAP</p>
+        <div class="map-sub">Real-time position via FlightAware API</div>
+      </div>
+    </div>
+  </div>
+  <script src="family-tracker.js"></script>
+</body>
+</html>
