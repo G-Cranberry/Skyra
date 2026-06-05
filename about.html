@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SKYRA - About Us</title>
+  <link rel="stylesheet" href="shared.css"/>
+  <link rel="stylesheet" href="about.css"/>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-logo" onclick="window.location.href='index.html'">SKY<span>RA</span></div>
+    <div class="nav-links">
+      <div class="nav-link" id="navLink1">Rights</div>
+      <div class="nav-link" id="navLink2">Family Tracker</div>
+      <div class="nav-link" id="navLink3">Tracker</div>
+      <div class="nav-link active">About Us</div>
+    </div>
+    <div class="nav-profile" onclick="window.location.href='profile.html'">JD</div>
+  </nav>
+  <div class="inner-page-content">
+    <div class="inner-page-title">About Skyra</div>
+    <div class="inner-page-sub">We didn't reinvent aviation. We just finally built it for people.</div>
+    <div class="inner-card about-story">
+      <p>Skyra was built on a simple truth: millions fly daily, yet passengers are clueless about their rights, families are left waiting in the dark, and pilot fatigue goes undetected. Aviation has always worked for airlines. <strong>We built Skyra to make it work for people.</strong></p>
+      <p>We're not reinventing aviation — we're showing the right data in the right place. Combining existing flight APIs, public ATC recordings, and AI to give passengers and crew the intelligence they've always deserved.</p>
+    </div>
+    <div class="about-grid about-stats">
+      <div class="about-stat"><div class="about-stat-num">4M+</div><div class="about-stat-label">Passengers Assisted</div></div>
+      <div class="about-stat"><div class="about-stat-num">210k+</div><div class="about-stat-label">Crew Members</div></div>
+      <div class="about-stat"><div class="about-stat-num">0</div><div class="about-stat-label">Scheduling Conflicts</div></div>
+      <div class="about-stat"><div class="about-stat-num">98%</div><div class="about-stat-label">Accuracy Rate</div></div>
+    </div>
+    <div class="inner-card">
+      <div class="about-stack-title">Tech Stack</div>
+      <div class="info-item"><div class="info-item-img">&#9883;&#65039;</div><div class="info-item-text"><strong>React Frontend</strong><span>Fast, responsive passenger &amp; crew interfaces</span></div></div>
+      <div class="info-item"><div class="info-item-img">&#128013;</div><div class="info-item-text"><strong>Python Backend</strong><span>FRMS fatigue model, Whisper voice analysis</span></div></div>
+      <div class="info-item"><div class="info-item-img">&#128752;</div><div class="info-item-text"><strong>FlightAware &amp; OpenSky APIs</strong><span>Real-time flight position and telemetry</span></div></div>
+      <div class="info-item"><div class="info-item-img">&#129302;</div><div class="info-item-text"><strong>OpenAI Whisper + librosa</strong><span>ATC voice pattern analysis</span></div></div>
+    </div>
+  </div>
+  <script src="about.js"></script>
+</body>
+</html>
