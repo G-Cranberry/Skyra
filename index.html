@@ -9,8 +9,12 @@
 </head>
 <body>
 
-  <!-- Aurora canvas background -->
-  <canvas id="auroraCanvas"></canvas>
+  <!-- Background video -->
+  <video id="bgVideo" autoplay muted loop playsinline>
+    <source src="bg-video.mp4" type="video/mp4"/>
+  </video>
+  <!-- Dark overlay on top of video -->
+  <div class="video-overlay"></div>
 
   <!-- Hero card with plane -->
   <div class="land-hero">
@@ -66,24 +70,4 @@
       <h2>Aviation,<br/>Reimagined.</h2>
       <p>The first unified platform for passengers, crew, and ground staff — giving everyone the intelligence aviation never shared.</p>
       <div class="land-stat-row">
-        <div class="land-stat"><span>4M+</span><small>Passengers Helped</small></div>
-        <div class="land-stat"><span>210k+</span><small>Crew Members</small></div>
-      </div>
-    </div>
-    <div class="land-card">
-      <div class="specialty-badge">What Sets Skyra Apart</div>
-      <h2 class="specialty-title">Our Specialties</h2>
-      <div class="specialty-items">
-        <div class="specialty-item"><div class="specialty-num">1</div>Passenger Rights AI</div>
-        <div class="specialty-item"><div class="specialty-num">2</div>Real-Time Family Tracker</div>
-        <div class="specialty-item"><div class="specialty-num">3</div>Pilot Fatigue Monitor</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Enter button -->
-  <button class="land-next-btn" id="enterBtn" title="Enter Skyra">&#8594;</button>
-
-  <script src="index.js"></script>
-</body>
-</html>
+        <div class="land-stat"><span>4M+
