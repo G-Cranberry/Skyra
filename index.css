@@ -1,5 +1,4 @@
 /* ── LANDING PAGE STYLES ──────────────────────────────────── */
-* { margin: 0; padding: 0; box-sizing: border-box; }
 html, body {
   margin: 0 !important;
   padding: 0 !important;
@@ -7,13 +6,7 @@ html, body {
   height: 100vh !important;
   width: 100vw !important;
   background: #0d0d0d !important;
-}
-
-body {
-  background: #0d0d0d;
-  overflow: hidden;
-  height: 100vh;
-  width: 100vw;
+  font-family: 'Inter', sans-serif;
 }
 
 /* Full screen video */
@@ -23,10 +16,11 @@ body {
   width: 100vw;
   height: 100vh;
   object-fit: cover;
+  object-position: center 60%;
   z-index: 0;
 }
 
-/* Dark overlay */
+/* Dark overlay — heavier at top and bottom */
 .video-overlay {
   position: fixed;
   top: 0; left: 0;
@@ -34,9 +28,10 @@ body {
   height: 100vh;
   background: linear-gradient(
     to bottom,
-    rgba(0,0,0,0.25) 0%,
-    rgba(0,0,0,0.10) 40%,
-    rgba(0,0,0,0.65) 100%
+    rgba(0,0,0,0.30) 0%,
+    rgba(0,0,0,0.05) 40%,
+    rgba(0,0,0,0.55) 75%,
+    rgba(0,0,0,0.75) 100%
   );
   z-index: 1;
 }
@@ -71,7 +66,7 @@ body {
   position: fixed;
   bottom: 24px;
   left: 20px;
-  right: 20px;
+  right: 90px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
@@ -79,13 +74,13 @@ body {
 }
 
 .land-card {
-  background: rgba(255,255,255,0.08);
+  background: rgba(10, 10, 20, 0.55);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: 16px;
   padding: 20px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
 }
 
 .land-card-label {
@@ -187,10 +182,7 @@ body {
 @media(max-width:600px) {
   .land-grid {
     grid-template-columns: 1fr;
-    bottom: 80px;
-  }
-  .land-next-btn {
-    bottom: 20px;
     right: 20px;
+    bottom: 90px;
   }
 }
