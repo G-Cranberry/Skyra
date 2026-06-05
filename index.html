@@ -9,16 +9,25 @@
 </head>
 <body>
 
-  <!-- Info grid -->
+  <!-- Full screen background video -->
+  <video id="bgVideo" autoplay muted loop playsinline>
+    <source src="bg-video.mp4" type="video/mp4"/>
+  </video>
+  <!-- Dark overlay -->
+  <div class="video-overlay"></div>
+
+  <!-- Logo top left -->
+  <div class="land-logo">
+    <div class="land-arrows-top">&raquo;&raquo;&raquo;</div>
+    <div class="land-brand">SKY<span>RA</span></div>
+  </div>
+
+  <!-- Two cards at bottom -->
   <div class="land-grid">
     <div class="land-card">
       <div class="land-card-label">About Skyra</div>
       <h2>Aviation,<br/>Reimagined.</h2>
       <p>The first unified platform for passengers, crew, and ground staff — giving everyone the intelligence aviation never shared.</p>
-      <div class="land-stat-row">
-        <div class="land-stat"><span>4M+</span><small>Passengers Helped</small></div>
-        <div class="land-stat"><span>210k+</span><small>Crew Members</small></div>
-      </div>
     </div>
     <div class="land-card">
       <div class="specialty-badge">What Sets Skyra Apart</div>
@@ -29,29 +38,6 @@
         <div class="specialty-item"><div class="specialty-num">3</div>Pilot Fatigue Monitor</div>
       </div>
     </div>
-  </div>
-
-  <!-- Hero card with video inside -->
-  <div class="land-hero">
-    <!-- Video confined inside hero card -->
-    <video id="bgVideo" autoplay muted loop playsinline>
-      <source src="bg-video.mp4" type="video/mp4"/>
-    </video>
-    <!-- Overlay so text stays readable -->
-    <div class="video-overlay"></div>
-
-    <!-- Content on top of video -->
-    <div class="land-hero-content">
-      <div class="land-hero-top">
-        <div>
-          <div class="land-arrows-top">&raquo;&raquo;&raquo;</div>
-          <div class="land-brand">SKY<span>RA</span></div>
-        </div>
-        <div class="land-tagline-small">The Sky Has Always Had Secrets.<br/>Now It Talks.</div>
-      </div>
-    </div>
-
-    <div class="land-arrows-bottom">&raquo;&raquo;&raquo;</div>
   </div>
 
   <!-- Enter button -->
