@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SKYRA - My Rights</title>
+  <link rel="stylesheet" href="shared.css"/>
+  <link rel="stylesheet" href="rights.css"/>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-logo" onclick="window.location.href='index.html'">SKY<span>RA</span></div>
+    <div class="nav-links">
+      <div class="nav-link active">Rights</div>
+      <div class="nav-link" onclick="window.location.href='family-tracker.html'">Family Tracker</div>
+      <div class="nav-link" onclick="window.location.href='tracker.html'">Tracker</div>
+      <div class="nav-link" onclick="window.location.href='about.html'">About Us</div>
+    </div>
+    <div class="nav-profile" onclick="window.location.href='profile.html'">JD</div>
+  </nav>
+  <div class="inner-page-content">
+    <div class="inner-page-title">My Rights</div>
+    <div class="inner-page-sub">Ask our AI about your passenger rights — delays, cancellations, baggage, denied boarding. Available in Hindi &amp; English.</div>
+    <div class="inner-card">
+      <div class="chat-area" id="rightsChat">
+        <div class="chat-msg bot">Hi! I'm Skyra. Tell me your situation — flight delayed, cancelled, or baggage issue — and I'll tell you exactly what you're owed. ✈️</div>
+      </div>
+      <div class="chat-input-row">
+        <input class="chat-input" id="rightsInput" type="text" placeholder="e.g. My flight is 3 hours late, what can I claim?"/>
+        <button class="chat-send" id="rightsSend">&#8594;</button>
+      </div>
+    </div>
+    <div class="inner-card">
+      <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:16px;">Common Rights Quick Reference</div>
+      <div class="info-item"><div class="info-item-img">&#9200;</div><div class="info-item-text"><strong>Delay &gt; 2 hours (Domestic)</strong><span>Meals &amp; refreshments mandatory</span></div></div>
+      <div class="info-item"><div class="info-item-img">&#8377;</div><div class="info-item-text"><strong>Delay &gt; 6 hours (Domestic)</strong><span>Full refund or alternate flight + &#8377;5,000</span></div></div>
+      <div class="info-item"><div class="info-item-img">&#128722;</div><div class="info-item-text"><strong>Baggage Delay &gt; 12 hours</strong><span>Essentials reimbursement up to &#8377;3,500</span></div></div>
+      <div class="info-item"><div class="info-item-img">&#9940;</div><div class="info-item-text"><strong>Denied Boarding</strong><span>Compensation + written notice of rights</span></div></div>
+    </div>
+  </div>
+  <script src="rights.js"></script>
+</body>
+</html>
