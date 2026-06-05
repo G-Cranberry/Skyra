@@ -1,5 +1,13 @@
 /* ── LANDING PAGE STYLES ──────────────────────────────────── */
 * { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  height: 100vh !important;
+  width: 100vw !important;
+  background: #0d0d0d !important;
+}
 
 body {
   background: #0d0d0d;
