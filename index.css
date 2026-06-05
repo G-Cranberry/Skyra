@@ -1,62 +1,55 @@
 /* ── LANDING PAGE STYLES ──────────────────────────────────── */
 body {
-  background: #0a0a0a;
+  background: #0d0d0d;
   overflow-x: hidden;
   min-height: 100vh;
 }
 
-/* Background video */
-#bgVideo {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  z-index: 0;
-  pointer-events: none;
+/* Hero card — video is confined inside this */
+.land-hero {
+  border-radius: 20px;
+  margin: 20px;
+  position: relative;
+  overflow: hidden;
+  min-height: 420px;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.5);
 }
 
-/* Dark overlay so text stays readable */
+/* Video fills the hero card exactly */
+#bgVideo {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Dark overlay on video for readability */
 .video-overlay {
-  position: fixed;
+  position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.45) 0%,
-    rgba(0, 0, 0, 0.30) 50%,
-    rgba(0, 0, 0, 0.60) 100%
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.15) 50%,
+    rgba(0, 0, 0, 0.55) 100%
   );
   z-index: 1;
-  pointer-events: none;
 }
 
-/* Push all content above video and overlay */
-.land-hero,
-.land-grid,
-.land-next-btn {
+/* Hero content sits above video and overlay */
+.land-hero-content {
   position: relative;
   z-index: 2;
-}
-
-.land-hero {
-  background: rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 20px;
-  margin: 20px;
-  padding: 28px 32px 0;
-  position: relative;
-  overflow: hidden;
-  min-height: 300px;
-  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.3);
+  padding: 28px 32px;
 }
 
 .land-hero-top {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 16px;
 }
 
 .land-brand {
@@ -71,7 +64,7 @@ body {
 
 .land-tagline-small {
   font-size: 12px;
-  color: rgba(255,255,255,0.65);
+  color: rgba(255,255,255,0.75);
   text-align: right;
   max-width: 200px;
   line-height: 1.5;
@@ -89,41 +82,33 @@ body {
   bottom: 20px;
   right: 24px;
   font-size: 22px;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.6);
   letter-spacing: 2px;
+  z-index: 2;
 }
 
-.plane-area {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 0 0;
-}
-.plane-svg-container { width: 90%; max-width: 620px; }
-
+/* Grid below hero */
 .land-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   padding: 0 20px 20px;
+  position: relative;
+  z-index: 1;
 }
 
 .land-card {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #ffffff;
   border-radius: 16px;
   padding: 20px;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
 }
 
 .land-card-label {
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 2px;
-  color: rgba(255,255,255,0.45);
+  color: #aaa;
   text-transform: uppercase;
   margin-bottom: 6px;
 }
@@ -132,14 +117,14 @@ body {
   font-family: 'Syne', sans-serif;
   font-size: 20px;
   font-weight: 700;
-  color: #ffffff;
+  color: #1a1a2e;
   line-height: 1.2;
   margin-bottom: 6px;
 }
 
 .land-card p {
   font-size: 11px;
-  color: rgba(255,255,255,0.55);
+  color: #999;
   line-height: 1.5;
 }
 
@@ -149,13 +134,13 @@ body {
   font-family: 'Syne', sans-serif;
   font-size: 18px;
   font-weight: 700;
-  color: #ffffff;
+  color: #1a1a2e;
 }
 
 .land-stat small {
   display: block;
   font-size: 9px;
-  color: rgba(255,255,255,0.4);
+  color: #aaa;
   letter-spacing: 1px;
   text-transform: uppercase;
   margin-top: 1px;
@@ -163,20 +148,19 @@ body {
 
 .specialty-badge {
   display: inline-block;
-  background: rgba(255,255,255,0.12);
+  background: #1a1a2e;
   color: #fff;
   font-size: 9px;
   letter-spacing: 1.5px;
   padding: 3px 10px;
   border-radius: 50px;
   margin-bottom: 10px;
-  border: 1px solid rgba(255,255,255,0.18);
 }
 
 .specialty-title {
   font-size: 16px;
   margin-bottom: 4px;
-  color: #ffffff;
+  color: #1a1a2e;
 }
 
 .specialty-items { display: flex; gap: 10px; margin-top: 14px; }
@@ -185,15 +169,14 @@ body {
   flex: 1;
   text-align: center;
   font-size: 10px;
-  color: rgba(255,255,255,0.6);
+  color: #777;
   line-height: 1.4;
 }
 
 .specialty-num {
   width: 22px; height: 22px;
-  background: rgba(255,255,255,0.15);
-  color: #ffffff;
-  border: 1px solid rgba(255,255,255,0.3);
+  background: #1a1a2e;
+  color: #fff;
   border-radius: 50%;
   font-size: 10px;
   font-weight: 700;
@@ -203,28 +186,27 @@ body {
   margin: 0 auto 6px;
 }
 
+/* Enter button */
 .land-next-btn {
   position: fixed;
   bottom: 28px; right: 28px;
   z-index: 50;
   width: 52px; height: 52px;
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.3);
+  background: #1a1a2e;
   color: #fff;
   border-radius: 50%;
   font-size: 20px;
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 8px 24px rgba(26,26,46,0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 .land-next-btn:hover {
   transform: scale(1.1);
-  background: rgba(255,255,255,0.25);
-  box-shadow: 0 12px 36px rgba(0,0,0,0.4);
+  box-shadow: 0 12px 32px rgba(26,26,46,0.4);
 }
 
 @media(max-width:600px) {
   .land-grid { grid-template-columns: 1fr; }
-  .land-hero { margin: 12px; padding: 20px 16px 0; }
+  .land-hero { margin: 12px; }
+  .land-hero-content { padding: 20px 16px; }
 }
