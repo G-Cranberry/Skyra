@@ -1,198 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SKYRA - Passenger Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="skyra.css">
-    <style>
-        .header {
-            padding: 32px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .user-badge {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: rgba(100,180,255,0.1);
-            border: 1px solid rgba(100,180,255,0.2);
-            padding: 8px 16px 8px 8px;
-            border-radius: 40px;
-        }
-        .avatar {
-            width: 32px;
-            height: 32px;
-            background: var(--blue-bright);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--bg-deep);
-            font-weight: 800;
-            font-size: 14px;
-        }
-
-        .hero-section {
-            padding: 60px 0;
-        }
-
-        .alert-strip {
-            background: rgba(245, 158, 11, 0.15);
-            border-left: 4px solid #f59e0b;
-            padding: 16px 24px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 48px;
-            color: #fcd34d;
-        }
-
-        .modules-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-
-        .module-card {
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-            text-decoration: none;
-            color: white;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .module-card:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(100,180,255,0.3);
-        }
-
-        .module-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .icon-box {
-            width: 48px;
-            height: 48px;
-            background: rgba(100,180,255,0.1);
-            color: var(--blue-bright);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .tag {
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            padding: 4px 12px;
-            border-radius: 20px;
-            background: rgba(255,255,255,0.1);
-        }
-        .tag.blue { background: rgba(100,180,255,0.2); color: var(--blue-bright); }
-        .tag.green { background: rgba(16,185,129,0.2); color: #34d399; }
-        .tag.purple { background: rgba(168,85,247,0.2); color: #c084fc; }
-
-        .module-title {
-            font-size: 24px;
-            font-weight: 600;
-        }
-
-        .module-desc {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-    </style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SKYRA - Passenger Home</title>
+  <link rel="stylesheet" href="shared.css"/>
+  <link rel="stylesheet" href="passenger-home.css"/>
 </head>
 <body>
 
-    <header class="header">
-        <div class="logo">SKY<span class="ra">RA</span></div>
-        <div class="user-badge">
-            <div class="avatar">JD</div>
-            <span style="font-size: 14px; font-weight: 600;">Passenger</span>
-        </div>
-    </header>
+  <nav class="navbar">
+    <div class="nav-logo" onclick="window.location.href='index.html'">SKY<span>RA</span></div>
+    <div class="nav-links">
+      <div class="nav-link active" onclick="window.location.href='rights.html'">Rights</div>
+      <div class="nav-link" onclick="window.location.href='family-tracker.html'">Family Tracker</div>
+      <div class="nav-link" onclick="window.location.href='tracker.html'">Tracker</div>
+      <div class="nav-link" onclick="window.location.href='about.html'">About Us</div>
+    </div>
+    <div class="nav-profile" id="paxAvatar" onclick="window.location.href='profile.html'" title="Profile">JD</div>
+  </nav>
 
-    <div class="container">
-        <div class="hero-section">
-            <p style="color: var(--blue-bright); font-weight: 600; letter-spacing: 2px; margin-bottom: 16px;">WELCOME BACK, JOHN</p>
-            <h1 class="serif" style="font-size: 56px; font-weight: 500; font-style: italic;">Your flight, your rights, your sky.</h1>
-        </div>
+  <div class="home-content">
+    <div class="home-greeting">Welcome back, John</div>
+    <div class="home-title">Your flight,<br/><em>your rights, your sky.</em></div>
 
-        <div class="alert-strip">
-            <i data-lucide="alert-triangle" style="width: 24px; height: 24px;"></i>
-            <div>
-                <strong style="display: block; font-size: 16px; margin-bottom: 4px;">Flight AI-101 Delayed (2h 15m)</strong>
-                <span style="font-size: 14px; opacity: 0.9;">You may be eligible for meal vouchers and compensation. <a href="#" style="color: white; text-decoration: underline;">Check eligibility</a></span>
-            </div>
-        </div>
-
-        <div class="modules-grid">
-            <!-- Module 1 -->
-            <a href="#" class="glass-card module-card">
-                <div class="module-header">
-                    <div class="icon-box"><i data-lucide="scale"></i></div>
-                    <span class="tag blue">AI</span>
-                </div>
-                <div>
-                    <h3 class="module-title">My Rights</h3>
-                    <p class="module-desc mt-2">Chat with our AI to understand exactly what you are owed during disruptions.</p>
-                </div>
-            </a>
-
-            <!-- Module 2 -->
-            <a href="#" class="glass-card module-card">
-                <div class="module-header">
-                    <div class="icon-box"><i data-lucide="map"></i></div>
-                    <span class="tag green">LIVE</span>
-                </div>
-                <div>
-                    <h3 class="module-title">Track Flight</h3>
-                    <p class="module-desc mt-2">Real-time telemetry and family sharing links for your journey.</p>
-                </div>
-            </a>
-
-            <!-- Module 3 -->
-            <a href="#" class="glass-card module-card">
-                <div class="module-header">
-                    <div class="icon-box"><i data-lucide="sparkles"></i></div>
-                    <span class="tag purple">NEW</span>
-                </div>
-                <div>
-                    <h3 class="module-title">Ask Skyra</h3>
-                    <p class="module-desc mt-2">Your personal aviation assistant. Ask anything about airports, baggage, or boarding.</p>
-                </div>
-            </a>
-
-            <!-- Module 4 -->
-            <a href="#" class="glass-card module-card">
-                <div class="module-header">
-                    <div class="icon-box"><i data-lucide="file-text"></i></div>
-                    <span class="tag">DOCS</span>
-                </div>
-                <div>
-                    <h3 class="module-title">Claim Helper</h3>
-                    <p class="module-desc mt-2">Auto-generate official compensation claim emails and forms.</p>
-                </div>
-            </a>
-        </div>
+    <div class="alert-strip">
+      <div class="alert-dot"></div>
+      <div class="alert-text">
+        <strong>Flight AI-101 Delayed (2h 15m)</strong> — You may be eligible for meal vouchers and compensation.
+        <span class="alert-link" onclick="window.location.href='rights.html'">Check eligibility &#8594;</span>
+      </div>
     </div>
 
-    <script>
-        lucide.createIcons();
-    </script>
+    <!-- 3 Flip Cards -->
+    <div class="cards-row">
+      <div class="flip-card" onclick="window.location.href='rights.html'">
+        <div class="flip-card-inner">
+          <div class="flip-front">
+            <div>
+              <div class="flip-tag">AI POWERED</div>
+              <div class="flip-icon">&#9878;&#65039;</div>
+              <div class="flip-title">My Rights</div>
+              <div class="flip-desc">Know exactly what you're owed during delays, cancellations, and denied boarding.</div>
+            </div>
+            <div class="flip-front-footer"><div class="flip-cta">EXPLORE &#8594;</div></div>
+          </div>
+          <div class="flip-back">
+            <div class="flip-back-tag">AI POWERED</div>
+            <div>
+              <div class="flip-back-title">My Rights</div>
+              <div class="flip-back-body">Chat with our AI in Hindi or English. Get instant answers on compensation, vouchers, and rebooking — based on your airline's actual rulebook.</div>
+              <button class="flip-back-btn" onclick="event.stopPropagation();window.location.href='rights.html'">Open Rights Assistant &#8594;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" onclick="window.location.href='family-tracker.html'">
+        <div class="flip-card-inner">
+          <div class="flip-front">
+            <div>
+              <div class="flip-tag">LIVE</div>
+              <div class="flip-icon">&#128106;</div>
+              <div class="flip-title">Family Tracker</div>
+              <div class="flip-desc">Share a live link so your family knows exactly where you are — from gate to landing.</div>
+            </div>
+            <div class="flip-front-footer"><div class="flip-cta">SHARE LINK &#8594;</div></div>
+          </div>
+          <div class="flip-back">
+            <div class="flip-back-tag">LIVE</div>
+            <div>
+              <div class="flip-back-title">Family Tracker</div>
+              <div class="flip-back-body">Generate a one-tap shareable link. Your family gets real-time updates — takeoff, landing, delays — no app needed.</div>
+              <button class="flip-back-btn" onclick="event.stopPropagation();window.location.href='family-tracker.html'">Generate Share Link &#8594;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" onclick="window.location.href='tracker.html'">
+        <div class="flip-card-inner">
+          <div class="flip-front">
+            <div>
+              <div class="flip-tag">REAL-TIME</div>
+              <div class="flip-icon">&#128225;</div>
+              <div class="flip-title">Flight Tracker</div>
+              <div class="flip-desc">Live position, altitude, speed and ETA for any flight in the world.</div>
+            </div>
+            <div class="flip-front-footer"><div class="flip-cta">TRACK NOW &#8594;</div></div>
+          </div>
+          <div class="flip-back">
+            <div class="flip-back-tag">REAL-TIME</div>
+            <div>
+              <div class="flip-back-title">Flight Tracker</div>
+              <div class="flip-back-body">Powered by FlightAware & OpenSky APIs. See your flight on a live map with auto-alerts for gate changes, delays, and arrivals.</div>
+              <button class="flip-back-btn" onclick="event.stopPropagation();window.location.href='tracker.html'">Open Live Tracker &#8594;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom grid -->
+    <div class="bottom-grid">
+      <div class="info-card">
+        <div class="info-card-title">Recent Flights</div>
+        <div class="info-card-sub">Your travel history</div>
+        <div class="info-item"><div class="info-item-img">&#9992;&#65039;</div><div class="info-item-text"><strong>DEL &#8594; BOM &middot; 6E-204</strong><span>May 28, 2026 &middot; Delayed 45 min</span></div></div>
+        <div class="info-item"><div class="info-item-img">&#128747;</div><div class="info-item-text"><strong>BOM &#8594; GOI &middot; AI-101</strong><span>May 20, 2026 &middot; On Time</span></div></div>
+        <div class="info-item"><div class="info-item-img">&#127759;</div><div class="info-item-text"><strong>DEL &#8594; DXB &middot; EK-510</strong><span>May 10, 2026 &middot; On Time</span></div></div>
+        <div class="see-more" onclick="window.location.href='tracker.html'">VIEW ALL &#8594;</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">Quick Actions</div>
+        <div class="info-card-sub">Jump to what you need</div>
+        <div class="info-item"><div class="info-item-img">&#9878;&#65039;</div><div class="info-item-text"><strong>Check Compensation</strong><span>Flight AI-101 eligible for &#8377;3,500</span></div></div>
+        <div class="info-item"><div class="info-item-img">&#128228;</div><div class="info-item-text"><strong>Share My Flight</strong><span>Family tracking link for 6E-204</span></div></div>
+        <div class="info-item"><div class="info-item-img">&#128172;</div><div class="info-item-text"><strong>Ask Skyra</strong><span>What's my baggage allowance?</span></div></div>
+        <div class="see-more" onclick="window.location.href='rights.html'">GET HELP &#8594;</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="passenger-home.js"></script>
 </body>
 </html>
