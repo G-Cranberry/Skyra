@@ -19,8 +19,8 @@ html, body {
     width: auto;
     height: auto;
     transform: translate(-50%, -50%);
-    object-fit: cover;
-    z-index: 0;
+    object-fit: center 50%;
+    z-index: .1;
 }
 
 /* Dark overlay — heavier at top and bottom */
