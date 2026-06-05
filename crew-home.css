@@ -1,0 +1,10 @@
+body { background: #f0f4f8; }
+.home-content { padding: 28px; }
+.home-greeting { font-size: 10px; font-weight: 600; letter-spacing: 2.5px; color: #aaa; text-transform: uppercase; margin-bottom: 4px; }
+.home-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(24px,3.5vw,38px); font-weight: 300; color: #1a1a2e; margin-bottom: 24px; line-height: 1.2; }
+.crew-title em { font-style: italic; color: #ff9f4a; }
+.crew-nav-profile { background: #1a0f2e !important; }
+.crew-alert { background: #fff0ed; border-color: #ff8a65; }
+.crew-dot { background: #ff5252; }
+.crew-alert-text { color: #7a2800; }
+.crew-alert-link { color: #ff5252 !important; }
