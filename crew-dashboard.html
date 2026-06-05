@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SKYRA - Crew Dashboard</title>
+  <link rel="stylesheet" href="shared.css"/>
+  <link rel="stylesheet" href="crew-dashboard.css"/>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-logo" onclick="window.location.href='index.html'">SKY<span>RA</span></div>
+    <div class="nav-links">
+      <div class="nav-link" onclick="window.location.href='fatigue.html'">Fatigue Monitor</div>
+      <div class="nav-link" onclick="window.location.href='voice.html'">Voice Analysis</div>
+      <div class="nav-link active">Crew Dashboard</div>
+      <div class="nav-link" onclick="window.location.href='about.html'">About Us</div>
+    </div>
+    <div class="nav-profile crew-nav-profile" onclick="window.location.href='profile.html'">CP</div>
+  </nav>
+  <div class="inner-page-content">
+    <div class="inner-page-title">Crew Dashboard</div>
+    <div class="inner-page-sub">Your duty schedule, compliance status, and readiness score — all in one view.</div>
+    <div class="about-grid dash-metrics">
+      <div class="about-stat"><div class="about-stat-num" style="color:#ff5252;">HIGH</div><div class="about-stat-label">Current Fatigue Risk</div></div>
+      <div class="about-stat"><div class="about-stat-num">48h</div><div class="about-stat-label">Flight Hours This Month</div></div>
+      <div class="about-stat"><div class="about-stat-num" style="color:#ff9f4a;">9.2h</div><div class="about-stat-label">Avg Rest (Min 10h)</div></div>
+      <div class="about-stat"><div class="about-stat-num">3</div><div class="about-stat-label">Fatigue Flags</div></div>
+    </div>
+    <div class="inner-card">
+      <div class="dash-section-title">Schedule Compliance — June 2026</div>
+      <div class="info-item"><div class="info-item-img">&#9989;</div><div class="info-item-text"><strong>AI-202 &middot; DEL &#8594; BOM &middot; Jun 6</strong><span>Pre-flight: Rest deficit flagged &middot; Status: Under review</span></div><span class="history-badge badge-red">FLAG</span></div>
+      <div class="info-item"><div class="info-item-img">&#9989;</div><div class="info-item-text"><strong>6E-890 &middot; BOM &#8594; HYD &middot; Jun 7</strong><span>Rest compliant &middot; Fatigue score: 52</span></div><span class="history-badge badge-yellow">MED</span></div>
+      <div class="info-item"><div class="info-item-img">&#9989;</div><div class="info-item-text"><strong>EK-521 &middot; DEL &#8594; DXB &middot; Jun 8</strong><span>Rest compliant &middot; Fatigue score: 28</span></div><span class="history-badge badge-green">LOW</span></div>
+      <div class="info-item"><div class="info-item-img">&#9989;</div><div class="info-item-text"><strong>AI-110 &middot; BOM &#8594; DEL &middot; Jun 10</strong><span>Rest compliant &middot; Fatigue score: 31</span></div><span class="history-badge badge-green">LOW</span></div>
+    </div>
+  </div>
+  <script src="crew-dashboard.js"></script>
+</body>
+</html>
