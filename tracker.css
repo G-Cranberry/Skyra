@@ -1,0 +1,18 @@
+body { background: #f0f4f8; }
+.tracker-input-row { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+.tracker-btn { white-space: nowrap; background: #1a1a2e !important; }
+.map-placeholder {
+  height: 260px;
+  background: linear-gradient(135deg, #e8f0fe, #c5d8f5);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 10px; color: #4a90d9;
+}
+.map-placeholder span { font-size: 40px; }
+.map-placeholder p { font-size: 14px; font-weight: 700; letter-spacing: 1px; }
+.map-sub { font-size: 12px; color: #6a8cb8; }
+.tracker-stats { display: none; margin-top: 16px; display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+.stat-box { background: #f0f4f8; border-radius: 10px; padding: 14px; text-align: center; }
+.stat-val { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: #1a1a2e; }
+.stat-label { font-size: 10px; color: #aaa; letter-spacing: 1px; margin-top: 3px; }
+@media(max-width:500px) { .tracker-stats { grid-template-columns: 1fr 1fr; } }
