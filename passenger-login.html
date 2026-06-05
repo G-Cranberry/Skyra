@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SKYRA - Sign In</title>
+  <link rel="stylesheet" href="shared.css"/>
+  <link rel="stylesheet" href="auth.css"/>
+</head>
+<body>
+  <div class="auth-bg"></div>
+  <a href="login.html" class="auth-back">&#8592; BACK</a>
+  <div class="auth-card">
+    <div class="auth-logo">SKY<span>RA</span></div>
+    <div class="auth-subtitle">Welcome back! Sign in to continue</div>
+
+    <button class="google-btn" onclick="handleGoogleLogin('passenger')">
+      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" width="20"/>
+      Continue with Google
+    </button>
+
+    <div class="auth-divider"><span>or sign in with email</span></div>
+
+    <div class="auth-field">
+      <label>Email Address</label>
+      <input type="email" id="email" placeholder="john@gmail.com"/>
+    </div>
+    <div class="auth-field">
+      <label>Password</label>
+      <input type="password" id="password" placeholder="••••••••"/>
+    </div>
+
+    <button class="auth-submit" onclick="handleEmailLogin('passenger')">Sign In</button>
+
+    <div class="auth-footer">
+      Don't have an account? <span onclick="window.location.href='passenger-signup.html'">Create one</span>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+</body>
+</html>
