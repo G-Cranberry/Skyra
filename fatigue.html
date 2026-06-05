@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SKYRA - Fatigue Monitor</title>
+  <link rel="stylesheet" href="shared.css"/>
+  <link rel="stylesheet" href="fatigue.css"/>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-logo" onclick="window.location.href='index.html'">SKY<span>RA</span></div>
+    <div class="nav-links">
+      <div class="nav-link active">Fatigue Monitor</div>
+      <div class="nav-link" onclick="window.location.href='voice.html'">Voice Analysis</div>
+      <div class="nav-link" onclick="window.location.href='crew-dashboard.html'">Crew Dashboard</div>
+      <div class="nav-link" onclick="window.location.href='about.html'">About Us</div>
+    </div>
+    <div class="nav-profile crew-nav-profile" onclick="window.location.href='profile.html'">CP</div>
+  </nav>
+  <div class="inner-page-content">
+    <div class="inner-page-title">Fatigue Monitor</div>
+    <div class="inner-page-sub">FRMS-based AI fatigue risk scoring — calculated from duty logs, rest hours, and time zones crossed.</div>
+    <div class="inner-card">
+      <div class="gauge-wrap">
+        <div class="gauge-circle high">
+          <div class="gauge-num">78</div>
+          <div class="gauge-label">Risk Score</div>
+        </div>
+        <div class="gauge-info">
+          <strong>&#9888;&#65039; High Fatigue Risk — Capt. R. Sharma</strong>
+          <p>Rest deficit detected: only 7.2h rest before next duty block (minimum 10h required). 3 consecutive long-haul flights in past 48 hours. Time zones crossed: 4. <strong>Recommendation: rest period mandatory before next flight.</strong></p>
+        </div>
+      </div>
+    </div>
+    <div class="inner-card">
+      <div class="inner-card-title">Duty Log Analysis</div>
+      <div class="info-item"><div class="info-item-img">&#128336;</div><div class="info-item-text"><strong>Last Rest Period</strong><span>7.2 hours (Jun 5 &middot; 21:00 – Jun 6 &middot; 04:12)</span></div></div>
+      <div class="info-item"><div class="info-item-img">&#9992;&#65039;</div><div class="info-item-text"><strong>Flight Hours (Last 24h)</strong><span>9.5 hours — approaching 10h limit</span></div></div>
+      <div class="info-item"><div class="info-item-img">&#127759;</div><div class="info-item-text"><strong>Time Zones Crossed</strong><span>4 zones — circadian disruption: HIGH</span></div></div>
+      <div class="info-item"><div class="info-item-img">&#128203;</div><div class="info-item-text"><strong>Consecutive Duty Days</strong><span>5 days — regulatory max: 6</span></div></div>
+    </div>
+  </div>
+  <script src="fatigue.js"></script>
+</body>
+</html>
