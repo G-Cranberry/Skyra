@@ -12,11 +12,13 @@ html, body {
 /* Full screen video */
 #bgVideo {
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  object-position: center 10%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100vw;
+  min-height: 100vh;
+  width: auto;
+  height: 160%;
   z-index: 0;
 }
 
