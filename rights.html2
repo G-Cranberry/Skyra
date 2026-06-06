@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SKYRA - My Rights</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    /* ── Background & Page ── */
+    body {
+      background: #f0f2f7;
+      background-image:
+        radial-gradient(ellipse 80% 60% at 70% -10%, rgba(99,130,255,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 10% 90%, rgba(99,199,255,0.08) 0%, transparent 55%),
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 39px,
+          rgba(180,190,220,0.13) 40px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 39px,
+          rgba(180,190,220,0.13) 40px
+        );
+      min-height: 100vh;
+    }
+ 
+    /* ── Page Layout ── */
+    .inner-page-content {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+    .inner-page-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: #1a1a2e;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+    .inner-page-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 28px;
+    }
+ 
+    /* ── Cards ── */
+    .inner-card {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid rgba(99,130,255,0.12);
+      box-shadow: 0 2px 12px rgba(30,40,100,0.06), 0 0 0 0.5px rgba(99,130,255,0.08);
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+    .section-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #1a1a2e;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+ 
+    /* ── Chat Area ── */
+    .chat-area {
+      min-height: 200px;
+      max-height: 340px;
+      overflow-y: auto;
+      padding: 8px 4px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      scroll-behavior: smooth;
+    }
+    .chat-msg {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      max-width: 82%;
+      padding: 12px 16px;
+      border-radius: 14px;
+    }
+    .chat-msg.bot {
+      background: #f1f3fb;
+      color: #1a1a2e;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    .chat-msg.user {
+      background: #1a1a2e;
+      color: #ffffff;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+    .chat-msg.typing {
+      background: #f1f3fb;
+      color: #9ca3af;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+      font-style: italic;
+    }
+ 
+    /* ── Chat Input ── */
+    .chat-input-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      align-items: center;
+    }
+    .chat-input {
+      flex: 1;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      padding: 12px 18px;
+      border-radius: 50px;
+      border: 1.5px solid #e5e7f0;
+      background: #f7f8fc;
+      color: #1a1a2e;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .chat-input:focus { border-color: #4f6ef7; background: #fff; }
+    .chat-input::placeholder { color: #b0b7cc; }
+    .chat-send {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: #1a1a2e;
+      color: #fff;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, transform 0.1s;
+      flex-shrink: 0;
+    }
+    .chat-send:hover { background: #4f6ef7; transform: scale(1.05); }
+    .chat-send:active { transform: scale(0.95); }
+ 
+    /* ── Quick Reference Cards (Clickable) ── */
+    .quick-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media(max-width:560px){ .quick-grid { grid-template-columns: 1fr; } }
+ 
+    .quick-card {
+      border: 1.5px solid #e8ebf5;
+      border-radius: 12px;
+      padding: 14px 16px;
+      background: #f7f8fd;
+      cursor: pointer;
+      transition: border-color 0.18s, background 0.18s, transform 0.12s, box-shadow 0.18s;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      user-select: none;
+    }
+    .quick-card:hover {
+      border-color: #4f6ef7;
+      background: #eef1ff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(79,110,247,0.12);
+    }
+    .quick-card:active { transform: translateY(0); }
+    .quick-card.active { border-color: #4f6ef7; background: #eef1ff; }
+ 
+    .quick-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px;
+      flex-shrink: 0;
+    }
+    .quick-icon.orange { background: #fff4e6; }
+    .quick-icon.blue   { background: #e8f0ff; }
+    .quick-icon.teal   { background: #e4f8f2; }
+    .quick-icon.red    { background: #fdeaea; }
+ 
+    .quick-text strong {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a1a2e;
+      display: block;
+      margin-bottom: 3px;
+    }
+    .quick-text span {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: #6b7280;
+      line-height: 1.45;
+    }
+    .quick-card-hint {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      color: #4f6ef7;
+      margin-top: 12px;
+      text-align: right;
+    }
+ 
+    /* ── Report Section ── */
+    .report-section {
+      margin-top: 4px;
+    }
+    .report-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .report-tab {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12.5px;
+      font-weight: 500;
+      padding: 7px 16px;
+      border-radius: 50px;
+      border: 1.5px solid #e5e7f0;
+      background: #f7f8fc;
+      color: #6b7280;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .report-tab:hover, .report-tab.active {
+      border-color: #4f6ef7;
+      background: #eef1ff;
+      color: #4f6ef7;
+    }
+ 
+    .report-form { display: none; flex-direction: column; gap: 14px; }
+    .report-form.visible { display: flex; }
+ 
+    .report-form label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #4b5563;
+      margin-bottom: 4px;
+      display: block;
+    }
+    .report-form input,
+    .report-form select,
+    .report-form textarea {
+      width: 100%;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13.5px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1.5px solid #e5e7f0;
+      background: #f7f8fc;
+      color: #1a1a2e;
+      outline: none;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+    }
+    .report-form input:focus,
+    .report-form select:focus,
+    .report-form textarea:focus { border-color: #4f6ef7; background: #fff; }
+    .report-form textarea { resize: vertical; min-height: 80px; }
+ 
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media(max-width:500px){ .form-row { grid-template-columns: 1fr; } }
+ 
+    .report-submit {
+      align-self: flex-start;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13.5px;
+      font-weight: 600;
+      padding: 11px 28px;
+      border-radius: 50px;
+      background: #1a1a2e;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .report-submit:hover { background: #4f6ef7; }
+    .report-submit:active { transform: scale(0.97); }
+ 
+    .report-success {
+      display: none;
+      background: #eafaf3;
+      border: 1.5px solid #34d399;
+      border-radius: 12px;
+      padding: 16px 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: #065f46;
+    }
+    .report-success.visible { display: block; }
+ 
+    /* ── Navbar (overrides from shared) ── */
+    .navbar {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(99,130,255,0.10);
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+      height: 60px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: #1a1a2e;
+      cursor: pointer;
+      letter-spacing: 1px;
+    }
+    .nav-logo span { color: #4f6ef7; }
+    .nav-links {
+      display: flex;
+      gap: 4px;
+      margin: 0 auto;
+    }
+    .nav-link {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: #6b7280;
+      padding: 7px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-link:hover { background: #f1f3ff; color: #1a1a2e; }
+    .nav-link.active { background: #1a1a2e; color: #fff; }
+    .nav-profile {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: #1a1a2e;
+      color: #fff;
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .nav-profile:hover { box-shadow: 0 0 0 3px rgba(79,110,247,0.3); }
+    .nav-profile img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-logo" onclick="window.location.href='index.html'">SKY<span>RA</span></div>
+    <div class="nav-links">
+      <div class="nav-link" onclick="window.location.href='passenger-home.html'">Home</div>
+      <div class="nav-link active">Rights</div>
+      <div class="nav-link" onclick="window.location.href='family-tracker.html'">Family Tracker</div>
+      <div class="nav-link" onclick="window.location.href='tracker.html'">Tracker</div>
+      <div class="nav-link" onclick="window.location.href='about.html'">About Us</div>
+    </div>
+    <div class="nav-profile" id="navProfile" onclick="window.location.href='profile.html'">
+      <span id="profileInitials">JD</span>
+    </div>
+  </nav>
+ 
+  <div class="inner-page-content">
+    <div class="inner-page-title">My Rights</div>
+    <div class="inner-page-sub">Ask our AI about your passenger rights — delays, cancellations, baggage, denied boarding. Available in Hindi &amp; English.</div>
+ 
+    <!-- Chat Card -->
+    <div class="inner-card">
+      <div class="chat-area" id="rightsChat">
+        <div class="chat-msg bot">Hi! I'm Skyra. Tell me your situation — flight delayed, cancelled, or baggage issue — and I'll tell you exactly what you're owed. ✈️</div>
+      </div>
+      <div class="chat-input-row">
+        <input class="chat-input" id="rightsInput" type="text" placeholder="e.g. My flight is 3 hours late, what can I claim?"/>
+        <button class="chat-send" id="rightsSend" aria-label="Send">&#8594;</button>
+      </div>
+    </div>
+ 
+    <!-- Quick Reference Card -->
+    <div class="inner-card">
+      <div class="section-label">Common Rights — click to ask</div>
+      <div class="quick-grid">
+        <div class="quick-card" onclick="autofill('My domestic flight is delayed by more than 2 hours. What meals and refreshments am I entitled to?')">
+          <div class="quick-icon orange">⏰</div>
+          <div class="quick-text">
+            <strong>Delay &gt; 2 hrs (Domestic)</strong>
+            <span>Meals &amp; refreshments mandatory</span>
+          </div>
+        </div>
+        <div class="quick-card" onclick="autofill('My domestic flight is delayed over 6 hours. Can I get a full refund or compensation of ₹5,000?')">
+          <div class="quick-icon blue">₹</div>
+          <div class="quick-text">
+            <strong>Delay &gt; 6 hrs (Domestic)</strong>
+            <span>Full refund or alternate flight + ₹5,000</span>
+          </div>
+        </div>
+        <div class="quick-card" onclick="autofill('My baggage was delayed by more than 12 hours on arrival. How do I claim essentials reimbursement?')">
+          <div class="quick-icon teal">🛒</div>
+          <div class="quick-text">
+            <strong>Baggage Delay &gt; 12 hrs</strong>
+            <span>Essentials reimbursement up to ₹3,500</span>
+          </div>
+        </div>
+        <div class="quick-card" onclick="autofill('I was denied boarding despite having a valid confirmed ticket. What compensation and rights do I have?')">
+          <div class="quick-icon red">🚫</div>
+          <div class="quick-text">
+            <strong>Denied Boarding</strong>
+            <span>Compensation + written notice of rights</span>
+          </div>
+        </div>
+      </div>
+      <div class="quick-card-hint">↑ Tap any card to auto-fill the question</div>
+    </div>
+ 
+    <!-- Report Section -->
+    <div class="inner-card report-section">
+      <div class="section-label">Report an Issue</div>
+      <p style="font-family:'DM Sans',sans-serif;font-size:13.5px;color:#6b7280;margin:0 0 16px;">Airline not acting on your rights? File a report and we'll track it for follow-up action.</p>
+ 
+      <div class="report-tabs">
+        <div class="report-tab active" onclick="switchReport('delay', this)">Flight Delay</div>
+        <div class="report-tab" onclick="switchReport('cancel', this)">Cancellation</div>
+        <div class="report-tab" onclick="switchReport('baggage', this)">Lost / Delayed Baggage</div>
+        <div class="report-tab" onclick="switchReport('boarding', this)">Denied Boarding</div>
+        <div class="report-tab" onclick="switchReport('refund', this)">Refund Not Received</div>
+      </div>
+ 
+      <!-- Delay Form -->
+      <div class="report-form visible" id="form-delay">
+        <div class="form-row">
+          <div><label>Flight Number</label><input type="text" placeholder="e.g. AI 302"/></div>
+          <div><label>Flight Date</label><input type="date"/></div>
+        </div>
+        <div class="form-row">
+          <div><label>Airline</label><input type="text" placeholder="e.g. Air India"/></div>
+          <div><label>Delay Duration</label>
+            <select><option>2–4 hours</option><option>4–6 hours</option><option>6–12 hours</option><option>12+ hours</option></select>
+          </div>
+        </div>
+        <div><label>Were you offered meals / refreshments?</label>
+          <select><option>No — not offered anything</option><option>Yes — offered and received</option><option>Offered but inadequate</option></select>
+        </div>
+        <div><label>Additional Details</label><textarea placeholder="Describe what happened..."></textarea></div>
+        <button class="report-submit" onclick="submitReport()">Submit Report</button>
+      </div>
+ 
+      <!-- Cancel Form -->
+      <div class="report-form" id="form-cancel">
+        <div class="form-row">
+          <div><label>Flight Number</label><input type="text" placeholder="e.g. 6E 204"/></div>
+          <div><label>Flight Date</label><input type="date"/></div>
+        </div>
+        <div><label>Airline</label><input type="text" placeholder="e.g. IndiGo"/></div>
+        <div><label>When were you notified of cancellation?</label>
+          <select><option>At the airport (same day)</option><option>Within 24 hours before</option><option>2–7 days before</option><option>7–14 days before</option><option>14+ days before</option></select>
+        </div>
+        <div><label>Was an alternate flight or refund offered?</label>
+          <select><option>No — nothing offered</option><option>Refund offered but not paid</option><option>Alternate flight offered but unsuitable</option><option>Yes — resolved</option></select>
+        </div>
+        <div><label>Additional Details</label><textarea placeholder="Describe what happened..."></textarea></div>
+        <button class="report-submit" onclick="submitReport()">Submit Report</button>
+      </div>
+ 
+      <!-- Baggage Form -->
+      <div class="report-form" id="form-baggage">
+        <div class="form-row">
+          <div><label>Flight Number</label><input type="text" placeholder="e.g. SG 301"/></div>
+          <div><label>Travel Date</label><input type="date"/></div>
+        </div>
+        <div class="form-row">
+          <div><label>Airline</label><input type="text" placeholder="e.g. SpiceJet"/></div>
+          <div><label>Issue Type</label>
+            <select><option>Baggage delayed (12+ hrs)</option><option>Baggage lost / not arrived</option><option>Baggage damaged</option></select>
+          </div>
+        </div>
+        <div><label>Did you file a PIR (Property Irregularity Report) at the airport?</label>
+          <select><option>Yes — I have the reference number</option><option>No — I wasn't informed about it</option><option>Airline refused to file PIR</option></select>
+        </div>
+        <div><label>PIR Reference Number (if any)</label><input type="text" placeholder="Optional"/></div>
+        <div><label>Additional Details</label><textarea placeholder="Describe what happened..."></textarea></div>
+        <button class="report-submit" onclick="submitReport()">Submit Report</button>
+      </div>
+ 
+      <!-- Boarding Form -->
+      <div class="report-form" id="form-boarding">
+        <div class="form-row">
+          <div><label>Flight Number</label><input type="text" placeholder="e.g. UK 890"/></div>
+          <div><label>Flight Date</label><input type="date"/></div>
+        </div>
+        <div><label>Airline</label><input type="text" placeholder="e.g. Vistara"/></div>
+        <div><label>Reason given for denied boarding</label>
+          <select><option>Overbooking</option><option>No reason given</option><option>Check-in issue</option><option>Other</option></select>
+        </div>
+        <div><label>Were you given a written notice of rights?</label>
+          <select><option>No — nothing given</option><option>Yes — received written notice</option></select>
+        </div>
+        <div><label>Compensation offered?</label>
+          <select><option>No compensation offered</option><option>Voucher / miles only</option><option>Cash but less than entitled</option><option>Yes — full compensation</option></select>
+        </div>
+        <div><label>Additional Details</label><textarea placeholder="Describe what happened..."></textarea></div>
+        <button class="report-submit" onclick="submitReport()">Submit Report</button>
+      </div>
+ 
+      <!-- Refund Form -->
+      <div class="report-form" id="form-refund">
+        <div class="form-row">
+          <div><label>Flight Number</label><input type="text" placeholder="e.g. AI 101"/></div>
+          <div><label>Cancellation / Travel Date</label><input type="date"/></div>
+        </div>
+        <div class="form-row">
+          <div><label>Airline</label><input type="text" placeholder="e.g. Air India"/></div>
+          <div><label>Amount Owed (₹)</label><input type="number" placeholder="e.g. 8500"/></div>
+        </div>
+        <div><label>How long has it been since you requested refund?</label>
+          <select><option>Less than 7 days</option><option>7–30 days</option><option>1–3 months</option><option>3+ months</option></select>
+        </div>
+        <div><label>Booking Reference / PNR</label><input type="text" placeholder="e.g. ABCD12"/></div>
+        <div><label>Additional Details</label><textarea placeholder="Describe what happened..."></textarea></div>
+        <button class="report-submit" onclick="submitReport()">Submit Report</button>
+      </div>
+ 
+      <!-- Success Message -->
+      <div class="report-success" id="reportSuccess">
+        ✅ Your report has been submitted successfully. Our team will review it and take follow-up action within 2–3 business days. You can track its status in your profile.
+      </div>
+    </div>
+  </div>
+ 
+  <script>
+    // ── Profile image persistence ──
+    function loadProfileImage() {
+      const stored = localStorage.getItem('skyra_profile_img');
+      const initials = localStorage.getItem('skyra_profile_initials') || 'JD';
+      const el = document.getElementById('navProfile');
+      const span = document.getElementById('profileInitials');
+      if (stored) {
+        span.style.display = 'none';
+        const img = document.createElement('img');
+        img.src = stored;
+        img.alt = 'Profile';
+        el.innerHTML = '';
+        el.appendChild(img);
+      } else {
+        span.textContent = initials;
+      }
+    }
+    loadProfileImage();
+ 
+    // ── Quick card autofill ──
+    function autofill(text) {
+      const input = document.getElementById('rightsInput');
+      input.value = text;
+      input.focus();
+      // Subtle flash
+      input.style.borderColor = '#4f6ef7';
+      input.style.background = '#f0f3ff';
+      setTimeout(() => {
+        input.style.borderColor = '';
+        input.style.background = '';
+      }, 600);
+    }
+ 
+    // ── Chat ──
+    const aiResponses = [
+      "Under DGCA Civil Aviation Requirements, a domestic delay of 3+ hours entitles you to free meals and refreshments. If the delay exceeds 6 hours, you're entitled to either a full refund or an alternate flight, plus ₹5,000 compensation from the airline.",
+      "For international flights under EU Regulation EC 261/2004, delays over 4 hours entitle you to €250–€600 depending on distance. For Indian carriers on domestic routes, DGCA norms apply — which airline and route?",
+      "If your baggage is delayed by more than 12 hours on arrival, you can claim reimbursement for essential expenses up to ₹3,500 on most Indian carriers. Make sure you filed a PIR (Property Irregularity Report) at the airport — you'll need the reference number.",
+      "Being denied boarding involuntarily? You're entitled to written notice of your rights, compensation, and either a full refund or the next available alternate flight. The airline cannot deny you this in writing.",
+      "A flight cancelled with less than 14 days' notice entitles you to a full refund AND compensation — ₹5,000 for domestic (DGCA) or €125–€600 for EU-regulated flights, depending on notice period and distance.",
+      "For a refund claim: Indian carriers must process refunds within 7 working days for credit card bookings. If it's been longer, you can escalate to DGCA's Air Sewa portal or file a complaint with the National Consumer Helpline (1800-11-4000).",
+    ];
+    let idx = 0;
+ 
+    function sendMessage() {
+      const input = document.getElementById('rightsInput');
+      const chat = document.getElementById('rightsChat');
+      if (!input.value.trim()) return;
+ 
+      const uMsg = document.createElement('div');
+      uMsg.className = 'chat-msg user';
+      uMsg.textContent = input.value;
+      chat.appendChild(uMsg);
+      input.value = '';
+      chat.scrollTop = chat.scrollHeight;
+ 
+      const typing = document.createElement('div');
+      typing.className = 'chat-msg typing';
+      typing.textContent = 'Skyra is checking your rights…';
+      chat.appendChild(typing);
+      chat.scrollTop = chat.scrollHeight;
+ 
+      setTimeout(() => {
+        chat.removeChild(typing);
+        const bMsg = document.createElement('div');
+        bMsg.className = 'chat-msg bot';
+        bMsg.textContent = aiResponses[idx % aiResponses.length];
+        idx++;
+        chat.appendChild(bMsg);
+        chat.scrollTop = chat.scrollHeight;
+      }, 1100);
+    }
+ 
+    document.getElementById('rightsSend').addEventListener('click', sendMessage);
+    document.getElementById('rightsInput').addEventListener('keydown', e => {
+      if (e.key === 'Enter') sendMessage();
+    });
+ 
+    // ── Report tabs ──
+    function switchReport(type, tab) {
+      document.querySelectorAll('.report-form').forEach(f => f.classList.remove('visible'));
+      document.querySelectorAll('.report-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById('form-' + type).classList.add('visible');
+      tab.classList.add('active');
+      document.getElementById('reportSuccess').classList.remove('visible');
+    }
+ 
+    function submitReport() {
+      const activeForm = document.querySelector('.report-form.visible');
+      if (!activeForm) return;
+      activeForm.classList.remove('visible');
+      document.getElementById('reportSuccess').classList.add('visible');
+    }
+  </script>
+</body>
+</html>
